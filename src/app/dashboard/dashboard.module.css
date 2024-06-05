@@ -55,12 +55,13 @@
 
 .userControls {
   display: flex;
+  justify-content: left;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  height: 100px;
+  width: 100%;
   margin-top: auto;
   margin-bottom: 10px;
-  height: 100px;
 }
 
 .sidebarItems {
@@ -81,5 +82,4 @@
 .user {
   border-bottom: 1px solid #dadfe4;
   border-radius: 0px;
-  padding-bottom: 20px;
 }
