@@ -6,20 +6,12 @@ import {
   SideBarComponent,
   SideBarItems,
   UserControls,
+  StyledLink,
 } from "./styled";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import styled from "styled-components";
 
-//Styled components
-const StyledLink = styled(Link)`
-  width: 100%;
-  &:active {
-    background-color: #efebff;
-  }
-`;
-
-export default function SideBar({ username }) {
+export default function SideBar({ username = "placeholder" }) {
   const pathname = usePathname();
   return (
     <SideBarComponent>
@@ -45,7 +37,7 @@ export default function SideBar({ username }) {
       <UserControls>
         <SideBarButtons borderBottom={true}>
           <img src="/user.svg" alt="home svg icon" height={20} width={20} />
-          {(username = "Placeholder")}
+          {username}
         </SideBarButtons>
         <br />
         <SideBarButtons>

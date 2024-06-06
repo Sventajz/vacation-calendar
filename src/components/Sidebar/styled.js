@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import Link from "next/link";
 
 export const SideBarButtons = styled.li`
   font-weight: bold;
@@ -75,4 +76,8 @@ export const DashboardComponent = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
+`;
+
+export const StyledLink = styled(Link)`
+  width: 100%;
 `;
