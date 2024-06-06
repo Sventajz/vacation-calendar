@@ -1,6 +1,6 @@
 import styles from "./welcome.module.css";
 
-export default function Welcome() {
+export default function Welcome({ username }) {
   return (
     <div className={styles.welcomeWrapper}>
       <div className={styles.welcomeImg}>
@@ -11,7 +11,7 @@ export default function Welcome() {
         />
       </div>
       <div className={styles.welcomeText}>
-        <h3>Welcome, USERNAME</h3>
+        <h3>Welcome,{username} </h3>
         <p>
           We are excited to have you here. This platform is designed to
           streamline and simplify the process of managing Paid Time Off (PTO)
