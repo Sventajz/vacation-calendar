@@ -1,5 +1,5 @@
-import CalendarComponent from "@/components/pages/pto";
+import MyCalendar from "@/components/pages/pto";
 
 export default function PTO() {
-  return <CalendarComponent></CalendarComponent>;
+  return <MyCalendar></MyCalendar>;
 }
