@@ -1,6 +1,6 @@
 "use client";
 import styled from "styled-components";
-import Button from "./button";
+import Button from "../../Button";
 import Link from "next/link";
 const WelcomeWrapper = styled.div`
   width: 97%;

@@ -6,7 +6,7 @@ import {
   SideBarComponent,
   SideBarItems,
   UserControls,
-} from "./sidebar.styled";
+} from "./styled";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styled from "styled-components";

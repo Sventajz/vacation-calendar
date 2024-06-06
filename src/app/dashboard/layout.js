@@ -1,6 +1,6 @@
 "use client";
 
-import SideBar from "./sidebar";
+import SideBar from "../../components/Sidebar";
 import styled from "styled-components";
 
 const DashboardWrapper = styled.div`
