@@ -1,17 +1,51 @@
-import styles from "./welcome.module.css";
+import styled from "styled-components";
+import Button from "./button";
+const WelcomeWrapper = styled.div`
+  width: 97%;
+  height: 40%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 2rem;
+  border-radius: 8px;
+  box-shadow: 2px 2px rgba(1, 1, 1, 0.2);
+  text-align: left;
+`;
+
+const WelcomeImg = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 60%;
+`;
+
+const WelcomeText = styled.div`
+  font-size: 0.9rem;
+  display: flex;
+  align-items: left;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  text-align: left;
+  gap: 10px;
+  margin-right: 15px;
+`;
+
+const AvatarImg = styled.img`
+  height: 90%;
+  margin-top: auto;
+`;
 
 export default function Welcome({ username }) {
   return (
-    <div className={styles.welcomeWrapper}>
-      <div className={styles.welcomeImg}>
-        <img
-          src="/avatar.png"
-          alt="Avatar picture"
-          className={styles.avatarImg}
-        />
-      </div>
-      <div className={styles.welcomeText}>
-        <h3>Welcome,{username} </h3>
+    <WelcomeWrapper>
+      <WelcomeImg>
+        <AvatarImg src="/avatar.png" alt="Avatar picture" />
+      </WelcomeImg>
+      <WelcomeText>
+        <h3>Welcome, {username}</h3>
         <p>
           We are excited to have you here. This platform is designed to
           streamline and simplify the process of managing Paid Time Off (PTO)
@@ -33,8 +67,8 @@ export default function Welcome({ username }) {
           <b>Support:</b> Our support team is here to assist you with any
           questions or issues.
         </p>
-        <div className={styles.gotoPTO}>Go to PTO</div>
-      </div>
-    </div>
+        <Button text="Go to PTO" />
+      </WelcomeText>
+    </WelcomeWrapper>
   );
 }

@@ -60,6 +60,6 @@ export const SideBarItems = styled.div`
 
 export const DashboardComponent = styled.div`
   height: 100%;
-  width: 100$;
+  width: 100%;
   display: flex;
 `;
