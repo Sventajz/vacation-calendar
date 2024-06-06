@@ -1,35 +1,58 @@
 "use client";
 
-import * as CustomStyle from "./sidebar.styled";
+import {
+  Banner,
+  SideBarButtons,
+  SideBarComponent,
+  SideBarItems,
+  UserControls,
+} from "./sidebar.styled";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import styled from "styled-components";
+
+//Styled components
+const StyledLink = styled(Link)`
+  width: 100%;
+  &:active {
+    background-color: #efebff;
+  }
+`;
 
 export default function SideBar({ username }) {
+  const pathname = usePathname();
   return (
-    <CustomStyle.SideBarComponent>
-      <CustomStyle.Banner>
+    <SideBarComponent>
+      <Banner>
         <img src="/kantunlogo.svg" alt="Kantun Logo" />
         <h2>PTO System</h2>
-      </CustomStyle.Banner>
-      <CustomStyle.SideBarItems>
-        <CustomStyle.SideBarButtons>
-          <img src="/home.svg" alt="home svg icon" height={20} width={20} />
-          Home
-        </CustomStyle.SideBarButtons>
-        <CustomStyle.SideBarButtons>
-          <img src="/work.svg" alt="home svg icon" height={20} width={20} />
-          PTO
-        </CustomStyle.SideBarButtons>
-      </CustomStyle.SideBarItems>
-      <CustomStyle.UserControls>
-        <CustomStyle.SideBarButtons>
+      </Banner>
+      <SideBarItems>
+        <StyledLink href="/dashboard/welcome">
+          <SideBarButtons active={pathname === "/dashboard/welcome"}>
+            <img src="/home.svg" alt="home svg icon" height={20} width={20} />
+            Home
+          </SideBarButtons>
+        </StyledLink>
+
+        <StyledLink href="/dashboard/pto">
+          <SideBarButtons active={pathname === "/dashboard/pto"}>
+            <img src="/work.svg" alt="home svg icon" height={20} width={20} />
+            PTO
+          </SideBarButtons>
+        </StyledLink>
+      </SideBarItems>
+      <UserControls>
+        <SideBarButtons borderBottom={true}>
           <img src="/user.svg" alt="home svg icon" height={20} width={20} />
           {(username = "Placeholder")}
-        </CustomStyle.SideBarButtons>
+        </SideBarButtons>
         <br />
-        <CustomStyle.SideBarButtons>
+        <SideBarButtons>
           <img src="/logout.svg" alt="home svg icon" height={20} width={20} />
           LogOut
-        </CustomStyle.SideBarButtons>
-      </CustomStyle.UserControls>
-    </CustomStyle.SideBarComponent>
+        </SideBarButtons>
+      </UserControls>
+    </SideBarComponent>
   );
 }

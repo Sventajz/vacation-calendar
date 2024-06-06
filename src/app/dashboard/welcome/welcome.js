@@ -1,5 +1,7 @@
+"use client";
 import styled from "styled-components";
 import Button from "./button";
+import Link from "next/link";
 const WelcomeWrapper = styled.div`
   width: 97%;
   height: 40%;
@@ -67,7 +69,9 @@ export default function Welcome({ username }) {
           <b>Support:</b> Our support team is here to assist you with any
           questions or issues.
         </p>
-        <Button text="Go to PTO" />
+        <Link href="/dashboard/pto">
+          <Button text="Go to PTO" />
+        </Link>
       </WelcomeText>
     </WelcomeWrapper>
   );

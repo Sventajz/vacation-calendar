@@ -1,7 +1,8 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
 export const SideBarButtons = styled.li`
   font-weight: bold;
-  width: 90%;
+  width: 95%;
   display: flex;
   justify-content: left;
   align-items: center;
@@ -14,6 +15,18 @@ export const SideBarButtons = styled.li`
     background-color: #efebff;
     transition: 0.5s;
   }
+  ${({ active }) =>
+    active &&
+    css`
+      background-color: #efebff;
+    `}
+  ${({ borderBottom }) =>
+    borderBottom &&
+    css`
+      border-bottom: 1px solid #dadfe4;
+      border-radius: 0px;
+      padding-bottom: 5px;
+    `}
 `;
 
 export const Banner = styled.div`
@@ -43,7 +56,7 @@ export const UserControls = styled.div`
   justify-content: left;
   flex-direction: column;
   align-items: center;
-  height: 100px;
+  height: 120px;
   width: 100%;
   margin-top: auto;
   margin-bottom: 10px;
