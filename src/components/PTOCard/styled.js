@@ -1,28 +1,33 @@
 import styled from "styled-components";
 
 export const CardWrapper = styled.div`
-  height: 80px;
-  width: 350px;
+  height: 70px;
+  width: 30%;
   background-color: #ffffff;
   padding: 5px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
-  margin: auto;
   color: black;
-  gap: 10px;
-  margin: 5px;
+  margin-top: 10px;
+  margin-bottom: 5px;
   border-radius: 10px;
   border: 1px solid #dadfe4;
 `;
 
 export const CardInformation = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   font-size: 12px;
   color: #8494a0;
-  margin: auto;
+  margin-right: auto;
+  margin-left: 10px;
+`;
+
+export const NumberStyle = styled.span`
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: black;
+`;
+
+export const TextStyle = styled.p`
+  margin-right: auto;
 `;

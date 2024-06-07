@@ -1,12 +1,14 @@
-import { CardWrapper, CardInformation } from "./styled";
+import { CardWrapper, CardInformation, NumberStyle, TextStyle } from "./styled";
 
-export default function PTOCard({ title, daysCounter }) {
+export default function PTOCard({ title, daysCounter, text }) {
   return (
     <CardWrapper>
       <img src="/userIcon.svg" />
       <CardInformation>
-        <p>{title}</p>
-        <p>{daysCounter} (from last year)</p>
+        <TextStyle>{title}</TextStyle>
+        <TextStyle>
+          <NumberStyle>{daysCounter} days</NumberStyle> {text}
+        </TextStyle>
       </CardInformation>
     </CardWrapper>
   );
