@@ -50,6 +50,9 @@ export const SideBarComponent = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: 2px 2px rgba(1, 1, 1, 0.1);
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const UserControls = styled.div`

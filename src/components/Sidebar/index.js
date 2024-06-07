@@ -16,7 +16,7 @@ export default function SideBar({ username = "placeholder" }) {
     <SideBarComponent>
       <Banner>
         <img src="/kantunlogo.svg" alt="Kantun Logo" />
-        <h2>PTO System</h2>
+        <h3>PTO System</h3>
       </Banner>
       <SideBarItems>
         <StyledLink href="/dashboard/welcome">

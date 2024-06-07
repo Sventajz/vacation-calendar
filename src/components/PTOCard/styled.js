@@ -13,6 +13,9 @@ export const CardWrapper = styled.div`
   margin-bottom: 5px;
   border-radius: 10px;
   border: 1px solid #dadfe4;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const CardInformation = styled.div`
@@ -26,6 +29,9 @@ export const NumberStyle = styled.span`
   font-weight: bold;
   font-size: 1.1rem;
   color: black;
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
 export const TextStyle = styled.p`

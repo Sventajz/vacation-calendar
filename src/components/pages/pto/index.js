@@ -1,21 +1,25 @@
 "use client";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import PTOCard from "@/components/PTOCard";
+import Button from "@/components/Button";
+
+// Had to import basic CSS file so that i could override the
+// styling of the calendar library
+import "./calendarStyle.css";
+
 import {
   PTOWrapper,
   PTOCardWrapper,
-  PTOTopWrapper,
+  PTOtitleWrapper,
   CalendarWrapper,
+  CalendarSelection,
 } from "./styled";
-import PTOCard from "@/components/PTOCard";
-import Button from "@/components/Button";
-import "./calendarStyle.css";
-const ptoCounter = 6;
-const userName = "Tvrtko";
+
 const events = [
   { title: "Sven Na godisnjem", start: new Date(), end: new Date(2024, 5, 15) },
   {
-    title: `${userName} and ${ptoCounter} others on PTO`,
+    title: `Tvrtko and 6 others on PTO`,
     start: new Date(2024, 5, 12),
     end: new Date(2024, 5, 24),
   },
@@ -24,10 +28,10 @@ const events = [
 export default function DemoApp() {
   return (
     <PTOWrapper>
-      <PTOTopWrapper>
+      <PTOtitleWrapper>
         <h2>PTO</h2>
         <Button text={"Request PTO"} />
-      </PTOTopWrapper>
+      </PTOtitleWrapper>
       <PTOCardWrapper>
         <PTOCard
           title={"PTO DAYS LEFT"}
@@ -38,6 +42,10 @@ export default function DemoApp() {
         <PTOCard title={"PENDING PTO"} daysCounter={3} />
       </PTOCardWrapper>
       <CalendarWrapper>
+        <CalendarSelection>
+          <p>Placeholder text</p>
+          <p>Placeholder text</p>
+        </CalendarSelection>
         <FullCalendar
           plugins={[dayGridPlugin]}
           initialView="dayGridMonth"
