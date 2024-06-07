@@ -16,13 +16,13 @@ export const SideBarButtons = styled.li`
     background-color: #efebff;
     transition: 0.5s;
   }
-  ${({ active }) =>
-    active &&
+  ${({ $active }) =>
+    $active &&
     css`
       background-color: #efebff;
     `}
-  ${({ borderBottom }) =>
-    borderBottom &&
+  ${({ $borderbottom }) =>
+    $borderbottom &&
     css`
       border-bottom: 1px solid #dadfe4;
       border-radius: 0px;
