@@ -12,11 +12,15 @@ const DashboardWrapper = styled.div`
   width: 100%;
 `;
 
+const MainStyle = styled.main`
+  z-index: 0;
+`;
+
 export default function Layout({ children }) {
   return (
     <DashboardWrapper>
       <SideBar />
-      <main>{children}</main>
+      <MainStyle>{children}</MainStyle>
     </DashboardWrapper>
   );
 }

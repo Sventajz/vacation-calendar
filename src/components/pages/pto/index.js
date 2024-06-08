@@ -17,7 +17,11 @@ import {
 } from "./styled";
 
 const events = [
-  { title: "Sven Na godisnjem", start: new Date(), end: new Date(2024, 5, 15) },
+  {
+    title: "Klara Na godisnjem",
+    start: new Date(),
+    end: new Date(2028, 5, 15),
+  },
   {
     title: `Tvrtko and 6 others on PTO`,
     start: new Date(2024, 5, 12),

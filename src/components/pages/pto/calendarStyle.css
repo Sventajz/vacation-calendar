@@ -1,9 +1,14 @@
 .fc {
   height: 70vh;
+  z-index: -1;
 }
 
 #fc-dom-648 {
   font-size: 1rem;
+}
+
+.fc-event-main {
+  z-index: -1;
 }
 
 .fc-header-toolbar.fc-toolbar {

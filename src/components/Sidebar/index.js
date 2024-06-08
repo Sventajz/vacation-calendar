@@ -9,11 +9,17 @@ import {
   StyledLink,
 } from "./styled";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 export default function SideBar({ username = "placeholder" }) {
+  const [isOpen, setIsOpen] = useState();
+
+  const toggleIsOpen = () => {
+    setIsOpen(!isOpen);
+  };
   const pathname = usePathname();
   return (
-    <SideBarComponent>
+    <SideBarComponent $isOpen={isOpen} onClick={toggleIsOpen}>
       <Banner>
         <img src="/kantunlogo.svg" alt="Kantun Logo" />
         <h3>PTO System</h3>
