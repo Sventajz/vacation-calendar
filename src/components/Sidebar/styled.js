@@ -42,6 +42,7 @@ export const SideBarButtons = styled.li`
   border-radius: 5px;
   padding-left: 5px;
   justify-content: left;
+  width: 95%;
   gap: 5px;
   &:hover {
     background-color: #efebff;
@@ -65,7 +66,6 @@ export const SideBarItems = styled.div`
   display: flex;
   justify-content: left;
   flex-direction: column;
-
   align-items: center;
   height: 100px;
   width: 100%;

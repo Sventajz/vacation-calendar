@@ -15,6 +15,7 @@ import {
   CalendarWrapper,
   CalendarSelection,
 } from "./styled";
+import SelectionBanner from "@/components/SelectionBanner";
 
 // events array has objects that will be able to be created and deleted
 // upon backend finalization
@@ -41,7 +42,7 @@ export default function DemoApp() {
   return (
     <PTOWrapper>
       <PTOtitleWrapper>
-        <h2>PTO</h2>
+        <h2>Hello</h2>
         <Button text={"Request PTO"} />
       </PTOtitleWrapper>
       <PTOCardWrapper>
@@ -53,6 +54,7 @@ export default function DemoApp() {
         <PTOCard title={"UPCOMING PTO"} daysCounter={2} />
         <PTOCard title={"PENDING PTO"} daysCounter={3} />
       </PTOCardWrapper>
+      <SelectionBanner />
       <CalendarWrapper>
         <CalendarSelection>
           <p>Placeholder text</p>

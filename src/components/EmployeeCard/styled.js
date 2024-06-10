@@ -1,15 +1,14 @@
 import styled from "styled-components";
 
 export const EmployeeCardWrapper = styled.div`
-  background-color: black;
-  height: 100px;
-  width: 90%;
+  width: 100%;
   border-radius: 10px;
   background-color: #fff;
   padding: 10px;
   display: flex;
   justify-content: space-between;
   border: 1px solid #dadfe4;
+  min-height: 100px;
 `;
 export const EmployeeInfo = styled.div`
   display: flex;
