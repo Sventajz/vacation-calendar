@@ -11,7 +11,7 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function SideBar({ username = "placeholder" }) {
+export default function SideBar({ username = "placeholder", isAdmin = true }) {
   const pathname = usePathname();
   return (
     <SideBarComponent>
@@ -32,6 +32,19 @@ export default function SideBar({ username = "placeholder" }) {
             <img src="/work.svg" alt="home svg icon" height={20} width={20} />
             PTO
           </SideBarButtons>
+          {isAdmin && (
+            <StyledLink href="/dashboard/employees">
+              <SideBarButtons active={pathname === "/dashboard/employees"}>
+                <img
+                  src="/work.svg"
+                  alt="home svg icon"
+                  height={20}
+                  width={20}
+                />
+                Employees
+              </SideBarButtons>
+            </StyledLink>
+          )}
         </StyledLink>
       </SideBarItems>
       <UserControls>
