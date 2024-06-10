@@ -99,14 +99,4 @@ export const HamburgerButton = styled.button`
   margin: 10px;
   margin-left: 15px;
   z-index: 3;
-
-  div {
-    width: 30px;
-    height: 3px;
-    background: #000;
-    border-radius: 3px;
-    transition: all 0.3s linear;
-    position: relative;
-    transform-origin: 1px;
-  }
 `;
