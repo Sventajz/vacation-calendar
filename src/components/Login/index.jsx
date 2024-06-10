@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react';
-import { NextPage } from 'next';
+// import { NextPage } from 'next';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -36,7 +36,7 @@ const LoginForm = () => {
             <Credentials>
               <TitleLogin>PTO System</TitleLogin>
               <FormFields>
-                <LabelInputDivision>
+                <BaseLabelInputDivision>
                   <label htmlFor="username">USER NAME</label>
                   <input
                     type="text"
@@ -45,7 +45,7 @@ const LoginForm = () => {
                     onChange={(e) => setUsername(e.target.value)}
                     required
                   />
-                </LabelInputDivision>
+                </BaseLabelInputDivision>
                 <PasswordLabelInputDivision>
                   <label htmlFor="password">PASSWORD</label>
                   <div>
@@ -92,8 +92,8 @@ const LoginModal = styled.div`
 
 const ModalWindow = styled.div`
   position: relative; 
-  width: 36%;
-  min-width: 375px;
+  min-width: 36%;
+  max-width: 90vw;
   height: auto;
 `;
 
@@ -171,8 +171,6 @@ const BaseLabelInputDivision = styled.div`
     font-size: 18px;
   }
 `;
-
-const LabelInputDivision = styled(BaseLabelInputDivision)``;
 
 const PasswordLabelInputDivision = styled(BaseLabelInputDivision)`
   position: relative;
