@@ -1,5 +1,4 @@
 "use client";
-import styled from "styled-components";
 import Button from "../../Button";
 import Link from "next/link";
 import { AvatarImg, WelcomeImg, WelcomeWrapper, WelcomeText } from "./styled";
