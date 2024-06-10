@@ -8,7 +8,6 @@ import {
   UserControls,
   StyledLink,
 } from "./styled";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function SideBar({ username = "placeholder", isAdmin = true }) {

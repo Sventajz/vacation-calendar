@@ -1,3 +1,7 @@
+"use client";
+
+import EmployeeComponent from "@/components/pages/Employee";
+
 export default function Employees() {
-  return <h1>Hello world</h1>;
+  return <EmployeeComponent></EmployeeComponent>;
 }
