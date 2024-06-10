@@ -92,11 +92,34 @@ export const HamburgerButton = styled.button`
   justify-content: space-around;
   width: 30px;
   height: 30px;
+  cursor: pointer;
   background: transparent;
   border: none;
-  cursor: pointer;
   padding: 0;
   margin: 10px;
   margin-left: 15px;
   z-index: 3;
+  div {
+    width: 30px;
+    height: 3px;
+    background: #000;
+    border-radius: 3px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: 1px;
+
+    :first-child {
+      transform: ${({ $isOpen }) => ($isOpen ? "rotate(45deg)" : "rotate(0)")};
+    }
+
+    :nth-child(2) {
+      opacity: ${({ $isOpen }) => ($isOpen ? "0" : "1")};
+      transform: ${({ $isOpen }) =>
+        $isOpen ? "translateX(20px)" : "translateX(0)"};
+    }
+
+    :nth-child(3) {
+      transform: ${({ $isOpen }) => ($isOpen ? "rotate(-45deg)" : "rotate(0)")};
+    }
+  }
 `;

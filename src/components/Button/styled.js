@@ -1,10 +1,11 @@
 import styled from "styled-components";
-
+import { breakPoints } from "@/app/breakpoints";
 export const ButtonStyle = styled.button`
+  height: 25px;
+  font-size: 0.8rem;
   background-color: #5c36ff;
   border: none;
   color: #ffffff;
-  height: 35px;
   width: 125px;
   border-radius: 15px;
   display: flex;
@@ -18,8 +19,8 @@ export const ButtonStyle = styled.button`
     color: black;
     border: 1px solid #5c36ff;
   }
-  @media (max-width: 950px) {
-    height: 25px;
-    font-size: 0.8rem;
+  @media (min-width: ${breakPoints.mobile}) {
+    height: 35px;
+    font-size: 1rem;
   }
 `;
