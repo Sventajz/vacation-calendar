@@ -9,12 +9,11 @@ export const CardWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   color: black;
-  margin-top: 10px;
-  margin-bottom: 5px;
   border-radius: 10px;
   border: 1px solid #dadfe4;
-  @media (max-width: 768px) {
+  @media (max-width: 950px) {
     width: 100%;
+    height: 50px;
   }
 `;
 
@@ -23,6 +22,9 @@ export const CardInformation = styled.div`
   color: #8494a0;
   margin-right: auto;
   margin-left: 10px;
+  @media (max-width: 1000px) {
+    font-size: 8px;
+  }
 `;
 
 export const NumberStyle = styled.span`

@@ -3,14 +3,14 @@ import Link from "next/link";
 
 export const SideBarButtons = styled.li`
   font-weight: bold;
-  width: 95%;
   display: flex;
-  justify-content: left;
+  justify-content: ${(props) => (props.$isOpen ? "left" : "center")};
   align-items: center;
   height: 40px;
   margin: 5px;
   border-radius: 5px;
   padding-left: 5px;
+  justify-content: left;
   gap: 5px;
   &:hover {
     background-color: #efebff;
@@ -41,27 +41,24 @@ export const Banner = styled.div`
   margin-top: 15px;
   margin-left: auto;
   margin-right: auto;
+  overflow: hidden;
+  ${(props) =>
+    !props.$isOpen &&
+    css`
+      justify-content: center;
+    `}
 `;
 
 export const SideBarComponent = styled.div`
   background-color: #ffffff;
   height: 100%;
-  width: 100%;
-  min-width: 250px;
+  width: ${(props) => (props.$isOpen ? "250px" : "60px")};
   display: flex;
   flex-direction: column;
   margin-right: 20px;
-  z-index: 1;
+  z-index: 2;
   box-shadow: 2px 2px rgba(1, 1, 1, 0.1);
-  @media (max-width: 950px) {
-    font-size: 0.8rem;
-    transition: 1s;
-  }
-  ${({ $isOpen }) =>
-    $isOpen &&
-    css`
-      transform: translateX(-150px);
-    `};
+  transition: width 0.3s ease;
 `;
 
 export const UserControls = styled.div`
@@ -79,6 +76,7 @@ export const SideBarItems = styled.div`
   display: flex;
   justify-content: left;
   flex-direction: column;
+
   align-items: center;
   height: 100px;
   width: 100%;
@@ -92,4 +90,29 @@ export const DashboardComponent = styled.div`
 
 export const StyledLink = styled(Link)`
   width: 100%;
+`;
+
+export const HamburgerButton = styled.button`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 10px;
+  margin-left: 15px;
+  z-index: 3;
+
+  div {
+    width: 30px;
+    height: 3px;
+    background: #000;
+    border-radius: 3px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: 1px;
+  }
 `;

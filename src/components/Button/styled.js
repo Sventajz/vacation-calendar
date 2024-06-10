@@ -18,4 +18,8 @@ export const ButtonStyle = styled.button`
     color: black;
     border: 1px solid #5c36ff;
   }
+  @media (max-width: 950px) {
+    height: 25px;
+    font-size: 0.8rem;
+  }
 `;

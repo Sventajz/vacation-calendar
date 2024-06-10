@@ -5,7 +5,6 @@ export const PTOWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 95%;
-  margin-top: 10px;
 `;
 
 export const PTOtitleWrapper = styled.div`
@@ -13,9 +12,9 @@ export const PTOtitleWrapper = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  align-items: spa;
   padding-left: 5px;
   padding-right: 5px;
+  margin-top: 10px;
 `;
 export const PTOCardWrapper = styled.div`
   display: flex;
@@ -23,9 +22,13 @@ export const PTOCardWrapper = styled.div`
   justify-content: space-between;
   width: 100%;
   align-items: center;
-  @media (max-width: 768px) {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  @media (max-width: 950px) {
     flex-direction: column;
+    gap: 5px;
     width: 100%;
+    margin: 0;
   }
 `;
 

@@ -18,14 +18,19 @@ import {
 
 const events = [
   {
-    title: "Klara Na godisnjem",
+    title: "Placeholder",
     start: new Date(),
-    end: new Date(2028, 5, 15),
+    end: new Date(2024, 5, 15),
   },
   {
-    title: `Tvrtko and 6 others on PTO`,
+    title: `Placeholder`,
     start: new Date(2024, 5, 12),
     end: new Date(2024, 5, 24),
+  },
+  {
+    title: `Placeholder`,
+    start: new Date(2024, 6, 12),
+    end: new Date(2024, 6, 14),
   },
 ];
 

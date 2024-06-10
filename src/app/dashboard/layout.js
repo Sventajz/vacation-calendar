@@ -14,6 +14,9 @@ const DashboardWrapper = styled.div`
 
 const MainStyle = styled.main`
   z-index: 0;
+  @media (max-width: 950px) {
+    width: 100%;
+  }
 `;
 
 export default function Layout({ children }) {
