@@ -7,29 +7,43 @@ import {
   SideBarItems,
   UserControls,
   StyledLink,
+  HamburgerButton,
 } from "./styled";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 export default function SideBar({ username = "placeholder", isAdmin = true }) {
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggleIsOpen = () => {
+    setIsOpen(!isOpen);
+  };
+
   const pathname = usePathname();
+
   return (
-    <SideBarComponent>
+    <SideBarComponent $isOpen={isOpen}>
+      <HamburgerButton onClick={toggleIsOpen} $isOpen={isOpen}>
+        <div></div>
+        <div></div>
+        <div></div>
+      </HamburgerButton>
       <Banner>
         <img src="/kantunlogo.svg" alt="Kantun Logo" />
-        <h2>PTO System</h2>
+        {isOpen && <h3>PTO System</h3>}
       </Banner>
       <SideBarItems>
         <StyledLink href="/dashboard/welcome">
-          <SideBarButtons active={pathname === "/dashboard/welcome"}>
+          <SideBarButtons $active={pathname === "/dashboard/welcome"}>
             <img src="/home.svg" alt="home svg icon" height={20} width={20} />
-            Home
+            {isOpen && <span>Home</span>}
           </SideBarButtons>
         </StyledLink>
 
         <StyledLink href="/dashboard/pto">
-          <SideBarButtons active={pathname === "/dashboard/pto"}>
+          <SideBarButtons $active={pathname === "/dashboard/pto"}>
             <img src="/work.svg" alt="home svg icon" height={20} width={20} />
-            PTO
+            {isOpen && <span>PTO</span>}
           </SideBarButtons>
           {isAdmin && (
             <StyledLink href="/dashboard/employees">
@@ -47,14 +61,14 @@ export default function SideBar({ username = "placeholder", isAdmin = true }) {
         </StyledLink>
       </SideBarItems>
       <UserControls>
-        <SideBarButtons borderBottom={true}>
+        <SideBarButtons $borderbottom={true}>
           <img src="/user.svg" alt="home svg icon" height={20} width={20} />
-          {username}
+          {isOpen && <span>{username}</span>}
         </SideBarButtons>
         <br />
         <SideBarButtons>
           <img src="/logout.svg" alt="home svg icon" height={20} width={20} />
-          LogOut
+          {isOpen && <span>LogOut</span>}
         </SideBarButtons>
       </UserControls>
     </SideBarComponent>
