@@ -16,6 +16,8 @@ import {
   CalendarSelection,
 } from "./styled";
 
+// events array has objects that will be able to be created and deleted
+// upon backend finalization
 const events = [
   {
     title: "Placeholder",
@@ -34,6 +36,7 @@ const events = [
   },
 ];
 
+// for now all of the card PROPS are placeholders until the backend is finalized
 export default function DemoApp() {
   return (
     <PTOWrapper>
