@@ -14,7 +14,7 @@ export const EmployeeInfo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30%;
+  width: 60%;
   gap: 10px;
 `;
 
