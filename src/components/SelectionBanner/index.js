@@ -1,29 +1,32 @@
 "use client";
 import { StyledLink } from "../Sidebar/styled";
-import { SideBarButtons } from "../Sidebar/styled";
 import { usePathname } from "next/navigation";
-import { SelectionBannerWrapper } from "./styled";
+import { SelectionBannerWrapper, SelectionLinkWrapper } from "./styled";
 
-export default function SelectionBanner({ isOpen = true }) {
+export default function SelectionBanner({}) {
   const pathname = usePathname();
-
   return (
     <SelectionBannerWrapper>
-      <StyledLink href="/dashboard/pto">
-        <SideBarButtons $active={pathname === "/dashboard/pto"}>
-          {isOpen && <span>My Calendar</span>}
-        </SideBarButtons>
-      </StyledLink>
-      <StyledLink href="/dashboard/pto">
-        <SideBarButtons $active={pathname === "/dashboard/pto"}>
-          {isOpen && <span>Team Calendar</span>}
-        </SideBarButtons>
-      </StyledLink>
-      <StyledLink href="/dashboard/employees">
-        <SideBarButtons $active={pathname === "/dashboard/employees"}>
-          {isOpen && <span>Employees</span>}
-        </SideBarButtons>
-      </StyledLink>
+      <SelectionLinkWrapper>
+        <StyledLink
+          href={"/dashboard/pto"}
+          $active={pathname === "/dashboard/pto"}
+        >
+          My Calendar
+        </StyledLink>
+        <StyledLink
+          href={"/dashboard/pto"}
+          $active={pathname === "/dashboard/pto"}
+        >
+          Team Calendar
+        </StyledLink>
+        <StyledLink
+          href={"/dashboard/employees"}
+          $active={pathname === "/dashboard/employees"}
+        >
+          Employees
+        </StyledLink>
+      </SelectionLinkWrapper>
     </SelectionBannerWrapper>
   );
 }

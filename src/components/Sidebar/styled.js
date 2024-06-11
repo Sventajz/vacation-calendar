@@ -48,6 +48,7 @@ export const SideBarButtons = styled.li`
     background-color: #efebff;
     transition: 0.5s;
   }
+
   ${({ $active }) =>
     $active &&
     css`
@@ -84,6 +85,16 @@ export const UserControls = styled.div`
 
 export const StyledLink = styled(Link)`
   width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  ${({ $active }) =>
+    $active &&
+    css`
+      border-bottom: 4px solid #5c36ff;
+    `}
 `;
 
 export const HamburgerButton = styled.button`
