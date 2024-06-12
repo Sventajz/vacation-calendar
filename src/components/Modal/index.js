@@ -59,7 +59,7 @@ const ReusableModal = ({ isLogin, isPtoRequest, onClose, onSubmit }) => {
           <Wrapper>
             <FormLogin onSubmit={isLogin ? handleLoginSubmit : handlePtoSubmit}>
               <Credentials>
-                <TitleLogin>{isLogin ? 'PTO System' : 'New PTO'}</TitleLogin>
+                <TitleLogin  $isInModal={isPtoRequest}>{isLogin ? 'PTO System' : 'New PTO'}</TitleLogin>
                 {isPtoRequest && (
                   <ExitButton onClick={handleClose}>
                     <FontAwesomeIcon icon={ faWindowClose } />
@@ -133,7 +133,7 @@ const ReusableModal = ({ isLogin, isPtoRequest, onClose, onSubmit }) => {
                   {error && <ErrorMessage>{error}</ErrorMessage>}
                 </FormFields>
               </Credentials>
-              <BtnLogin type="submit">{isLogin ? 'Log in' : 'Request PTO'}</BtnLogin>
+              <BtnLogin type="submit" $isInModal={isPtoRequest}>{isLogin ? 'Log in' : 'Request PTO'}</BtnLogin>
             </FormLogin>
           </Wrapper>
         </ModalWindow>
