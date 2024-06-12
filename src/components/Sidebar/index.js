@@ -12,7 +12,7 @@ import {
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-export default function SideBar({ username = "placeholder" }) {
+export default function SideBar({ username = "placeholder", isAdmin = true }) {
   const [isOpen, setIsOpen] = useState(true);
 
   const toggleIsOpen = () => {
@@ -39,13 +39,20 @@ export default function SideBar({ username = "placeholder" }) {
             {isOpen && <span>Home</span>}
           </SideBarButtons>
         </StyledLink>
-
         <StyledLink href="/dashboard/pto">
           <SideBarButtons $active={pathname === "/dashboard/pto"}>
             <img src="/work.svg" alt="home svg icon" height={20} width={20} />
             {isOpen && <span>PTO</span>}
           </SideBarButtons>
         </StyledLink>
+        {isAdmin && (
+          <StyledLink href="/dashboard/employees">
+            <SideBarButtons $active={pathname === "/dashboard/employees"}>
+              <img src="/user.svg" alt="home svg icon" height={20} width={20} />
+              {isOpen && <span>Employees</span>}
+            </SideBarButtons>
+          </StyledLink>
+        )}
       </SideBarItems>
       <UserControls>
         <SideBarButtons $borderbottom={true}>

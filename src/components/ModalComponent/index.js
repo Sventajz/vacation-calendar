@@ -1,11 +1,8 @@
-<<<<<<< HEAD
-<<<<<<< request-pto-modal
-'use client'
-import { useState } from 'react';
-import CalendarModal from '../../../components/RequestPtoModal/index.js';
+"use client";
+import { useState } from "react";
+import CalendarModal from "../../../components/RequestPtoModal/index.js";
 
 function WelcomePage() {
-
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -23,16 +20,6 @@ function WelcomePage() {
       {modalOpen && <CalendarModal onClose={closeModal} />}
     </div>
   );
-};
+}
 
 export default WelcomePage;
-=======
-"use client";
-
-=======
->>>>>>> feat/SPL-9
-import Welcome from "../../../components/pages/Welcome";
-export default function Dashboard({ username }) {
-  return <Welcome username="placeholder" />;
-}
->>>>>>> develop

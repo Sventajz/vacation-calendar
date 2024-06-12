@@ -42,11 +42,13 @@ export const SideBarButtons = styled.li`
   border-radius: 5px;
   padding-left: 5px;
   justify-content: left;
+  width: 95%;
   gap: 5px;
   &:hover {
     background-color: #efebff;
     transition: 0.5s;
   }
+
   ${({ $active }) =>
     $active &&
     css`
@@ -65,7 +67,6 @@ export const SideBarItems = styled.div`
   display: flex;
   justify-content: left;
   flex-direction: column;
-
   align-items: center;
   height: 100px;
   width: 100%;
@@ -84,6 +85,16 @@ export const UserControls = styled.div`
 
 export const StyledLink = styled(Link)`
   width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  ${({ $active }) =>
+    $active &&
+    css`
+      border-bottom: 4px solid #5c36ff;
+    `}
 `;
 
 export const HamburgerButton = styled.button`

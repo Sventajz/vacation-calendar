@@ -1,9 +1,12 @@
 /** @type {import('next').NextConfig} */
-
 const nextConfig = {
-    // pageExtensions: ['jsx', 'js'],
-    // pagesDir: './pages',
+  compiler: {
+    styledComponents: {
+      displayName: true,
+      ssr: true,
+      fileName: false,
+    },
+  },
 };
-  
-  export default nextConfig;
-  
+
+export default nextConfig;

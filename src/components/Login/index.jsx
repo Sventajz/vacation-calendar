@@ -1,9 +1,5 @@
-'use client';
-import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../lib/firebase/config.js';
+"use client";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   LoginModal,
   ModalWindow,
@@ -15,12 +11,12 @@ import {
   BaseLabelInputDivision,
   PasswordLabelInputDivision,
   BtnLogin,
-  ErrorMessage
-} from './styled_components.js';
+  ErrorMessage,
+} from "./styled_components.js";
 
 const LoginForm = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
 
@@ -33,7 +29,7 @@ const LoginForm = () => {
     try {
       await signInWithEmailAndPassword(auth, username, password);
       // Redirect to welcome page or dashboard after successful login
-      window.location.href = '/dashboard/welcome';
+      window.location.href = "/dashboard/welcome";
     } catch (error) {
       setError(error.message);
     }
@@ -61,14 +57,16 @@ const LoginForm = () => {
                   <label htmlFor="password">PASSWORD</label>
                   <div>
                     <input
-                      type={showPassword ? 'text' : 'password'}
+                      type={showPassword ? "text" : "password"}
                       id="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
                     />
                     <button type="button" onClick={handlePasswordToggle}>
-                      <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                      <FontAwesomeIcon
+                        icon={showPassword ? faEyeSlash : faEye}
+                      />
                     </button>
                   </div>
                 </PasswordLabelInputDivision>

@@ -34,9 +34,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-<<<<<<< request-pto-modal
 .env
-=======
-.env
->>>>>>> develop
