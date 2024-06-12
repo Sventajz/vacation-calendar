@@ -26,14 +26,14 @@ const events = [
     end: new Date(2024, 5, 15),
   },
   {
-    title: `Placeholder`,
-    start: new Date(2024, 5, 12),
-    end: new Date(2024, 5, 24),
+    title: "Placeholder",
+    start: new Date(2024, 6, 10),
+    end: new Date(2024, 6, 15),
   },
   {
-    title: `Placeholder`,
-    start: new Date(2024, 6, 12),
-    end: new Date(2024, 6, 14),
+    title: "Placeholder",
+    start: new Date(2024, 5, 5),
+    end: new Date(2024, 5, 15),
   },
 ];
 
