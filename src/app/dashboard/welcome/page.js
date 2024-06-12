@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react';
-import CalendarModal from '../../../components/Login/RequestPtoModal/index.js';
+import CalendarModal from '../../../components/RequestPtoModal/index.js';
 
 function WelcomePage() {
 

@@ -15,7 +15,7 @@ import {
   BtnLogin,
   ErrorMessage,
   ExitButton
-} from '../styled_components.js';
+} from '../Login/styled_components.js';
  
 const CalendarModal = ({ onClose }) => {
   const [username, setUsername] = useState('');
