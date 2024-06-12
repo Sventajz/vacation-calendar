@@ -1,3 +1,4 @@
+<<<<<<< request-pto-modal
 'use client'
 import { useState } from 'react';
 import CalendarModal from '../../../components/RequestPtoModal/index.js';
@@ -24,3 +25,11 @@ function WelcomePage() {
 };
 
 export default WelcomePage;
+=======
+"use client";
+
+import Welcome from "../../../components/pages/Welcome";
+export default function Dashboard({ username }) {
+  return <Welcome username="placeholder" />;
+}
+>>>>>>> develop
