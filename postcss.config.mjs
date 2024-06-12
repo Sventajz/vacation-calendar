@@ -1,7 +1,7 @@
-/** @type {import('postcss-load-config').Config} */
-const config = {
-  plugins: {
-  },
-};
+// /** @type {import('postcss-load-config').Config} */
+// const config = {
+//   plugins: {
+//   },
+// };
 
-export default config;
+// export default config;
