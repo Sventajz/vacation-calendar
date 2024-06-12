@@ -133,7 +133,7 @@ const ReusableModal = ({ isLogin, isPtoRequest, onClose, onSubmit }) => {
                   {error && <ErrorMessage>{error}</ErrorMessage>}
                 </FormFields>
               </Credentials>
-              <BtnLogin type="submit"  $isInModal={isPtoRequest}>{isLogin ? 'Log in' : 'Request PTO'}</BtnLogin>
+              <BtnLogin type="submit">{isLogin ? 'Log in' : 'Request PTO'}</BtnLogin>
             </FormLogin>
           </Wrapper>
         </ModalWindow>

@@ -1,5 +1,5 @@
 "use client";
-import ReusableModal from '../Modal/index.js';
+import Modal from '../Modal/index.js';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../lib/firebase/config.js';
 
@@ -10,7 +10,7 @@ const LoginForm = () => {
   };
 
   return (
-    <ReusableModal
+    <Modal
       isLogin={true}
       isPtoRequest={false}
       onSubmit={handleLogin}
