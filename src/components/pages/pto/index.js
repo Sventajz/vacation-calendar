@@ -3,7 +3,8 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import PTOCard from "@/components/PTOCard";
 import Button from "@/components/Button";
-
+import CalendarModal from "@/components/RequestPtoModal";
+import { useState } from "react";
 // Had to import basic CSS file so that i could override the
 // styling of the calendar library
 import "./calendarStyle.css";
@@ -39,11 +40,23 @@ const events = [
 
 // for now all of the card PROPS are placeholders until the backend is finalized
 export default function DemoApp() {
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <PTOWrapper>
       <PTOtitleWrapper>
         <h2>Hello</h2>
-        <Button text={"Request PTO"} />
+        <Button  onClick={openModal} text={"Request PTO"} />
+        {modalOpen && <CalendarModal onClose={closeModal} />}
       </PTOtitleWrapper>
       <PTOCardWrapper>
         <PTOCard

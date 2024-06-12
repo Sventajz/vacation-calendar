@@ -110,12 +110,6 @@ export const BaseLabelInputDivision = styled.div`
   ::-webkit-calendar-picker-indicator {
     filter: invert(100%);
   }
-  ${({ $isInModal }) =>
-    $isInModal &&
-    css`
-    background-color: green;
-      height: 100px;
-    `}
 `;
 
 export const PasswordLabelInputDivision = styled(BaseLabelInputDivision)`
