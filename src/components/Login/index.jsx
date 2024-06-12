@@ -13,7 +13,7 @@ import {
   BtnLogin,
   ErrorMessage,
 } from "./styled_components.js";
-
+import { useState } from "react";
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -64,9 +64,7 @@ const LoginForm = () => {
                       required
                     />
                     <button type="button" onClick={handlePasswordToggle}>
-                      <FontAwesomeIcon
-                        icon={showPassword ? faEyeSlash : faEye}
-                      />
+                      <FontAwesomeIcon />
                     </button>
                   </div>
                 </PasswordLabelInputDivision>

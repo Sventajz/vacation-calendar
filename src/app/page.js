@@ -1,5 +1,5 @@
 import styles from "./page.module.css";
-// import Login from "../components/Login/index";
+import Login from "../components/Login/index";
 import React from "react";
 //import { library } from "@fortawesome/fontawesome-svg-core";
 //import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -16,7 +16,7 @@ export default function Home() {
         /> */}
         <div className={styles.layer}></div>
       </div>
-      {/* <Login></Login> */}
+      <Login></Login>
     </main>
   );
 }
