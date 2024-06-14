@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useState } from "react";
+import axios from 'axios';
 import {
   LoginModal,
   ModalWindow,
@@ -19,6 +20,10 @@ import {
 } from './styled.js';
 
 const ReusableModal = ({ isLogin, isPtoRequest, onClose, onSubmit }) => {
+  const [leaveType, setLeaveType] = useState('');
+  const [dateStart, setDateStart] = useState('');
+  const [dateEnd, setDateEnd] = useState('');
+  const [explanation, setExplanation] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -37,32 +42,63 @@ const ReusableModal = ({ isLogin, isPtoRequest, onClose, onSubmit }) => {
     }
   };
 
+  const handleClose = () => {
+    onClose();
+  };
+
   const handlePtoSubmit = async (e) => {
     e.preventDefault();
-    // PTO request logic can be handled here
+    if (!leaveType || !dateStart || !dateEnd) {
+      setError("All fields except explanation are required.");
+      return;
+    }
+
     try {
-      await onSubmit();
+      const response = await axios.post('/api/request-pto', {
+        leaveType,
+        dateStart,
+        dateEnd,
+        explanation,
+      });
+
+      if (response.status !== 200) {
+        throw new Error('Failed to request PTO');
+      }
+
+      const result = response.data;
+      console.log('PTO request successful:', result);
+
+      // Pass the result to onSubmit to update events
+      onSubmit({
+        title: leaveType,
+        start: dateStart,
+        end: dateEnd,
+        explanation: explanation,
+      });
+
+      console.log("onSubmit called with: ", {
+        title: leaveType,
+        start: dateStart,
+        end: dateEnd,
+        explanation: explanation
+      });
     } catch (error) {
       setError(error.message);
     }
   };
 
-  const handleClose = () => {
-    onClose();
-  };
-
   return (
     <>
-      <BackgroundOverlay isVisible={isPtoRequest} />
+      <BackgroundOverlay $isVisible={isPtoRequest} />
       <LoginModal>
         <ModalWindow>
           <Wrapper>
             <FormLogin onSubmit={isLogin ? handleLoginSubmit : handlePtoSubmit}>
               <Credentials>
-                <TitleLogin  $isInModal={isPtoRequest}>{isLogin ? 'PTO System' : 'New PTO'}</TitleLogin>
+                <TitleLogin>{isLogin ? 'PTO System' : 'New PTO'}</TitleLogin>
                 {isPtoRequest && (
-                  <ExitButton onClick={handleClose}>
-                    <FontAwesomeIcon icon={ faWindowClose } />
+                  <ExitButton onClick={onClose}>
+                    <FontAwesomeIcon icon={faWindowClose} />
                   </ExitButton>
                 )}
                 <FormFields>
@@ -98,7 +134,8 @@ const ReusableModal = ({ isLogin, isPtoRequest, onClose, onSubmit }) => {
                     <>
                       <BaseLabelInputDivision>
                         <label htmlFor="leave_type">LEAVE TYPE</label>
-                        <select id="leave_type" required>
+                        <select id="leave_type" value={leaveType} onChange={(e) => setLeaveType(e.target.value)} required>
+                          <option value="">Select leave type</option>
                           <option value="Godišnji_odmor">Godišnji odmor</option>
                           <option value="Bolovanje">Bolovanje</option>
                           <option value="Rodiljni dopust">Rodiljni dopust</option>
@@ -110,6 +147,8 @@ const ReusableModal = ({ isLogin, isPtoRequest, onClose, onSubmit }) => {
                         <input
                           type="date"
                           id="date_start"
+                          value={dateStart}
+                          onChange={(e) => setDateStart(e.target.value)}
                           required
                         />
                       </BaseLabelInputDivision>
@@ -118,16 +157,20 @@ const ReusableModal = ({ isLogin, isPtoRequest, onClose, onSubmit }) => {
                         <input
                           type="date"
                           id="date_end"
+                          value={dateEnd}
+                          onChange={(e) => setDateEnd(e.target.value)}
                           required
                         />
                       </BaseLabelInputDivision>
-                      <PasswordLabelInputDivision>
+                      <BaseLabelInputDivision>
                         <label htmlFor="explanation">EXPLANATION (OPTIONAL)</label>
-                          <input
-                            type="text"
-                            id="explanation"
-                          />
-                      </PasswordLabelInputDivision>
+                        <input
+                          type="text"
+                          id="explanation"
+                          value={explanation}
+                          onChange={(e) => setExplanation(e.target.value)}
+                        />
+                      </BaseLabelInputDivision>
                     </>
                   )}
                   {error && <ErrorMessage>{error}</ErrorMessage>}
