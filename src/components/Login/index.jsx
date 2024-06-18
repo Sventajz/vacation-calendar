@@ -1,13 +1,14 @@
 "use client";
 
-import Modal from '../Modal/index.js';
-import axios from 'axios';
+import Modal from "../Modal/index.js";
+import axios from "axios";
 
+import apiClient from "@/app/api/services.js";
 
 const LoginForm = () => {
   const handleLogin = async (username, password) => {
     try {
-      const res = await axios.post("http://localhost:5000/api/login", {
+      const res = await apiClient.post("/login", {
         email: username,
         password_hashed: password,
       });
