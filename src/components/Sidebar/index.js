@@ -12,7 +12,7 @@ import {
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-export default function SideBar({ username = "placeholder", isAdmin = true }) {
+export default function SideBar({ username, isAdmin = true }) {
   const [isOpen, setIsOpen] = useState(true);
 
   const toggleIsOpen = () => {
