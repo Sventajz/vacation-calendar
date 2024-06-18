@@ -46,47 +46,6 @@ const ReusableModal = ({ isLogin, isPtoRequest, onClose, onSubmit }) => {
     onClose();
   };
 
-  const handlePtoSubmit = async (e) => {
-    e.preventDefault();
-    if (!leaveType || !dateStart || !dateEnd) {
-      setError("All fields except explanation are required.");
-      return;
-    }
-
-    try {
-      const response = await axios.post('/api/request-pto', {
-        leaveType,
-        dateStart,
-        dateEnd,
-        explanation,
-      });
-
-      if (response.status !== 200) {
-        throw new Error('Failed to request PTO');
-      }
-
-      const result = response.data;
-      console.log('PTO request successful:', result);
-
-      // Pass the result to onSubmit to update events
-      onSubmit({
-        title: leaveType,
-        start: dateStart,
-        end: dateEnd,
-        explanation: explanation,
-      });
-
-      console.log("onSubmit called with: ", {
-        title: leaveType,
-        start: dateStart,
-        end: dateEnd,
-        explanation: explanation
-      });
-    } catch (error) {
-      setError(error.message);
-    }
-  };
-
   return (
     <>
       <BackgroundOverlay $isVisible={isPtoRequest} />

@@ -18,8 +18,28 @@ import {
 } from "./styled";
 import SelectionBanner from "@/components/SelectionBanner";
 
+// events array has objects that will be able to be created and deleted
+// upon backend finalization
+const events = [
+  {
+    title: "Placeholder",
+    start: new Date(),
+    end: new Date(2024, 5, 15),
+  },
+  {
+    title: "Placeholder",
+    start: new Date(2024, 6, 10),
+    end: new Date(2024, 6, 15),
+  },
+  {
+    title: "Placeholder",
+    start: new Date(2024, 5, 5),
+    end: new Date(2024, 5, 15),
+  },
+];
+
+// for now all of the card PROPS are placeholders until the backend is finalized
 export default function DemoApp() {
-  const [events, setEvents] = useState([]);
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -31,31 +51,12 @@ export default function DemoApp() {
     setModalOpen(false);
   };
 
-  const handlePtoSubmit = (ptoRequest) => {
-    // Add new event to the existing events array
-    console.log(ptoRequest)
-    setEvents([...events, ptoRequest]);
-    closeModal();
-  };
-
   return (
     <PTOWrapper>
       <PTOtitleWrapper>
         <h2>Hello</h2>
-        <Button onClick={openModal} text={"Request PTO"} />
-        {modalOpen && (
-          <CalendarModal
-            onClose={closeModal}
-            onSubmit={(leaveType, dateStart, dateEnd, explanation) =>
-              handlePtoSubmit({
-                title: leaveType,
-                start: new Date(dateStart),
-                end: new Date(dateEnd),
-                explanation: explanation,
-              })
-            }
-          />
-        )}
+        <Button  onClick={openModal} text={"Request PTO"} />
+        {modalOpen && <CalendarModal onClose={closeModal} />}
       </PTOtitleWrapper>
       <PTOCardWrapper>
         <PTOCard
