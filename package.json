@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@fullcalendar/core": "^6.1.14",
@@ -16,6 +17,13 @@
     "@fullcalendar/react": "^6.1.14",
     "axios": "^1.7.2",
     "firebase": "^10.12.2",
+    "antd": "^5.18.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "font-awesome": "^4.7.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.4.1",
     "next": "14.2.3",
     "preact": "^10.22.0",
     "react": "^18",
@@ -28,37 +36,5 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "postcss": "^8"
-  },
-  "babel": {
-    "env": {
-      "development": {
-        "presets": [
-          "next/babel"
-        ],
-        "plugins": [
-          [
-            "styled-components",
-            {
-              "ssr": true,
-              "displayName": true
-            }
-          ]
-        ]
-      },
-      "production": {
-        "presets": [
-          "next/babel"
-        ],
-        "plugins": [
-          [
-            "styled-components",
-            {
-              "ssr": true,
-              "displayName": false
-            }
-          ]
-        ]
-      }
-    }
   }
 }
