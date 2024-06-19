@@ -26,16 +26,6 @@ const events = [
     start: new Date(),
     end: new Date(2024, 5, 15),
   },
-  {
-    title: "Placeholder",
-    start: new Date(2024, 6, 10),
-    end: new Date(2024, 6, 15),
-  },
-  {
-    title: "Placeholder",
-    start: new Date(2024, 5, 5),
-    end: new Date(2024, 5, 15),
-  },
 ];
 
 // for now all of the card PROPS are placeholders until the backend is finalized
