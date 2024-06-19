@@ -3,10 +3,11 @@
 import { ServerStyleSheet, StyleSheetManager } from "styled-components";
 import { useServerInsertedHTML } from "next/navigation";
 import { MainStyle, DashboardWrapper } from "./styled";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-import SideBar from "../../components/Sidebar";
 import apiClient from "../api/services";
+import SideBar from "../../components/Sidebar";
+import UserContext from "@/components/UserContext/UserContex";
 
 export default function RootLayout({ children }) {
   const [userInfo, setUserInfo] = useState();
@@ -14,7 +15,8 @@ export default function RootLayout({ children }) {
   async function GetUserInfo() {
     try {
       const user = await apiClient.get("/user");
-      setUserInfo(user.data[0].full_name);
+      const userInformation = setUserInfo(user.data[0].full_name);
+      return userInformation;
     } catch (error) {
       console.error("Error fetching user info:", error);
     }
@@ -31,10 +33,12 @@ export default function RootLayout({ children }) {
   });
 
   const content = (
-    <DashboardWrapper>
-      <SideBar username={userInfo} />
-      <MainStyle>{children}</MainStyle>
-    </DashboardWrapper>
+    <UserContext.Provider value={userInfo}>
+      <DashboardWrapper>
+        <SideBar />
+        <MainStyle>{children}</MainStyle>
+      </DashboardWrapper>
+    </UserContext.Provider>
   );
 
   return (

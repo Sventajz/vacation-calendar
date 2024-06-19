@@ -10,11 +10,11 @@ import {
   HamburgerButton,
 } from "./styled";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-
-export default function SideBar({ username, isAdmin = true }) {
+import { useContext, useState } from "react";
+import UserContext from "../UserContext/UserContex";
+export default function SideBar({ isAdmin = true }) {
   const [isOpen, setIsOpen] = useState(true);
-
+  const user = useContext(UserContext);
   const toggleIsOpen = () => {
     setIsOpen(!isOpen);
   };
@@ -57,7 +57,7 @@ export default function SideBar({ username, isAdmin = true }) {
       <UserControls>
         <SideBarButtons $borderbottom={true}>
           <img src="/user.svg" alt="home svg icon" height={20} width={20} />
-          {isOpen && <span>{username}</span>}
+          {isOpen && <span>{user}</span>}
         </SideBarButtons>
         <br />
         <SideBarButtons>
