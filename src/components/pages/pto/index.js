@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 // Had to import basic CSS file so that i could override the
 // styling of the calendar library
 import "./calendarStyle.css";
-
+import ReusableModal from "@/components/Modal";
 import {
   PTOWrapper,
   PTOCardWrapper,
@@ -53,13 +53,29 @@ export default function DemoApp() {
       console.log(error);
     }
   }
+  async function postEvent(leaveType, dateStart, dateEnd, explanation) {
+    try {
+      const res = await apiClient.post("/addEvent", {
+        type: leaveType,
+        start_date: dateStart,
+        end_date: dateEnd,
+        explanation: explanation,
+      });
+      getEvents();
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <PTOWrapper>
       <PTOtitleWrapper>
         <h2>Hello</h2>
         <Button onClick={openModal} text={"Request PTO"} />
-        {modalOpen && <CalendarModal onClose={closeModal} />}
+        {modalOpen && (
+          <ReusableModal onClose={closeModal} onSubmit={postEvent} />
+        )}
       </PTOtitleWrapper>
       <PTOCardWrapper>
         <PTOCard

@@ -1,7 +1,6 @@
 "use client";
 
 import Modal from "../Modal/index.js";
-import axios from "axios";
 
 import apiClient from "@/app/api/services.js";
 

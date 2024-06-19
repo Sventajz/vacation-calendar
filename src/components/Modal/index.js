@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 import {
   LoginModal,
   ModalWindow,
@@ -16,16 +16,16 @@ import {
   BtnLogin,
   ErrorMessage,
   ExitButton,
-  BackgroundOverlay
-} from './styled.js';
+  BackgroundOverlay,
+} from "./styled.js";
 
 const ReusableModal = ({ isLogin, isPtoRequest, onClose, onSubmit }) => {
-  const [leaveType, setLeaveType] = useState('');
-  const [dateStart, setDateStart] = useState('');
-  const [dateEnd, setDateEnd] = useState('');
-  const [explanation, setExplanation] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [leaveType, setLeaveType] = useState("");
+  const [dateStart, setDateStart] = useState("");
+  const [dateEnd, setDateEnd] = useState("");
+  const [explanation, setExplanation] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
 
@@ -42,6 +42,17 @@ const ReusableModal = ({ isLogin, isPtoRequest, onClose, onSubmit }) => {
     }
   };
 
+  const handlePtoSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      console.log("submit: ", leaveType, dateStart, dateEnd, explanation);
+      await onSubmit(leaveType, dateStart, dateEnd, explanation);
+      handleClose();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleClose = () => {
     onClose();
   };
@@ -54,7 +65,7 @@ const ReusableModal = ({ isLogin, isPtoRequest, onClose, onSubmit }) => {
           <Wrapper>
             <FormLogin onSubmit={isLogin ? handleLoginSubmit : handlePtoSubmit}>
               <Credentials>
-                <TitleLogin>{isLogin ? 'PTO System' : 'New PTO'}</TitleLogin>
+                <TitleLogin>{isLogin ? "PTO System" : "New PTO"}</TitleLogin>
                 {isPtoRequest && (
                   <ExitButton onClick={onClose}>
                     <FontAwesomeIcon icon={faWindowClose} />
@@ -77,14 +88,16 @@ const ReusableModal = ({ isLogin, isPtoRequest, onClose, onSubmit }) => {
                         <label htmlFor="password">PASSWORD</label>
                         <div>
                           <input
-                            type={showPassword ? 'text' : 'password'}
+                            type={showPassword ? "text" : "password"}
                             id="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
                           />
                           <button type="button" onClick={handlePasswordToggle}>
-                            <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                            <FontAwesomeIcon
+                              icon={showPassword ? faEyeSlash : faEye}
+                            />
                           </button>
                         </div>
                       </PasswordLabelInputDivision>
@@ -93,11 +106,18 @@ const ReusableModal = ({ isLogin, isPtoRequest, onClose, onSubmit }) => {
                     <>
                       <BaseLabelInputDivision>
                         <label htmlFor="leave_type">LEAVE TYPE</label>
-                        <select id="leave_type" value={leaveType} onChange={(e) => setLeaveType(e.target.value)} required>
+                        <select
+                          id="leave_type"
+                          value={leaveType}
+                          onChange={(e) => setLeaveType(e.target.value)}
+                          required
+                        >
                           <option value="">Select leave type</option>
                           <option value="Godišnji_odmor">Godišnji odmor</option>
                           <option value="Bolovanje">Bolovanje</option>
-                          <option value="Rodiljni dopust">Rodiljni dopust</option>
+                          <option value="Rodiljni dopust">
+                            Rodiljni dopust
+                          </option>
                           <option value="Komplikacije">Komplikacije</option>
                         </select>
                       </BaseLabelInputDivision>
@@ -122,7 +142,9 @@ const ReusableModal = ({ isLogin, isPtoRequest, onClose, onSubmit }) => {
                         />
                       </BaseLabelInputDivision>
                       <BaseLabelInputDivision>
-                        <label htmlFor="explanation">EXPLANATION (OPTIONAL)</label>
+                        <label htmlFor="explanation">
+                          EXPLANATION (OPTIONAL)
+                        </label>
                         <input
                           type="text"
                           id="explanation"
@@ -135,7 +157,9 @@ const ReusableModal = ({ isLogin, isPtoRequest, onClose, onSubmit }) => {
                   {error && <ErrorMessage>{error}</ErrorMessage>}
                 </FormFields>
               </Credentials>
-              <BtnLogin type="submit" $isInModal={isPtoRequest}>{isLogin ? 'Log in' : 'Request PTO'}</BtnLogin>
+              <BtnLogin type="submit" $isInModal={isPtoRequest}>
+                {isLogin ? "Log in" : "Request PTO"}
+              </BtnLogin>
             </FormLogin>
           </Wrapper>
         </ModalWindow>
