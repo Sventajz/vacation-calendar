@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "next_lint": "next lint"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
@@ -14,19 +16,25 @@
     "@fullcalendar/core": "^6.1.14",
     "@fullcalendar/daygrid": "^6.1.14",
     "@fullcalendar/react": "^6.1.14",
+    "@next/eslint-plugin-next": "^14.2.4",
     "axios": "^1.7.2",
+    "eslint-config-prettier": "^9.1.0",
     "firebase": "^10.12.2",
-    "next": "14.2.3",
+    "next": "^14.2.3",
     "preact": "^10.22.0",
+    "prettier": "^3.3.2",
     "react": "^18",
     "react-dom": "^18",
     "react-fontawesome": "^1.7.1",
     "styled-components": "^6.1.11"
   },
   "devDependencies": {
+    "@eslint/js": "^9.5.0",
     "babel-plugin-styled-components": "^2.1.4",
-    "eslint": "^8",
+    "eslint": "^8.57.0",
     "eslint-config-next": "14.2.3",
+    "eslint-plugin-react": "^7.34.3",
+    "globals": "^15.6.0",
     "postcss": "^8"
   },
   "babel": {
