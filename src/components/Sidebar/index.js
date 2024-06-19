@@ -1,4 +1,6 @@
 "use client";
+import { useContext, useState } from "react";
+import { usePathname } from "next/navigation";
 
 import {
   Banner,
@@ -9,12 +11,22 @@ import {
   StyledLink,
   HamburgerButton,
 } from "./styled";
-import { usePathname } from "next/navigation";
-import { useContext, useState } from "react";
+
+async function Logout() {
+  try {
+    await apiClient.post("/logout");
+    window.location.href = "/";
+  } catch (error) {
+    console.log(err);
+  }
+}
+
 import UserContext from "../UserContext/UserContex";
-export default function SideBar({ isAdmin = true }) {
+import apiClient from "@/app/api/services";
+export default function SideBar({}) {
   const [isOpen, setIsOpen] = useState(true);
   const user = useContext(UserContext);
+
   const toggleIsOpen = () => {
     setIsOpen(!isOpen);
   };
@@ -45,7 +57,7 @@ export default function SideBar({ isAdmin = true }) {
             {isOpen && <span>PTO</span>}
           </SideBarButtons>
         </StyledLink>
-        {isAdmin && (
+        {user.permission_id > 0 && (
           <StyledLink href="/dashboard/employees">
             <SideBarButtons $active={pathname === "/dashboard/employees"}>
               <img src="/user.svg" alt="home svg icon" height={20} width={20} />
@@ -57,10 +69,10 @@ export default function SideBar({ isAdmin = true }) {
       <UserControls>
         <SideBarButtons $borderbottom={true}>
           <img src="/user.svg" alt="home svg icon" height={20} width={20} />
-          {isOpen && <span>{user}</span>}
+          {isOpen && <span>{user.full_name}</span>}
         </SideBarButtons>
         <br />
-        <SideBarButtons>
+        <SideBarButtons onClick={Logout}>
           <img src="/logout.svg" alt="home svg icon" height={20} width={20} />
           {isOpen && <span>LogOut</span>}
         </SideBarButtons>

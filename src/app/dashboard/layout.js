@@ -10,13 +10,16 @@ import SideBar from "../../components/Sidebar";
 import UserContext from "@/components/UserContext/UserContex";
 
 export default function RootLayout({ children }) {
-  const [userInfo, setUserInfo] = useState();
+  const [userInfo, setUserInfo] = useState({});
 
   async function GetUserInfo() {
     try {
       const user = await apiClient.get("/user");
-      const userInformation = setUserInfo(user.data[0].full_name);
-      return userInformation;
+      const userInformation = user.data[0];
+      setUserInfo((userInfo) => ({
+        ...userInfo,
+        ...userInformation,
+      }));
     } catch (error) {
       console.error("Error fetching user info:", error);
     }
