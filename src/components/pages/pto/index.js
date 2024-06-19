@@ -4,7 +4,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import PTOCard from "@/components/PTOCard";
 import Button from "@/components/Button";
 import CalendarModal from "@/components/RequestPtoModal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // Had to import basic CSS file so that i could override the
 // styling of the calendar library
 import "./calendarStyle.css";
@@ -16,23 +16,17 @@ import {
   CalendarWrapper,
   CalendarSelection,
 } from "./styled";
+import apiClient from "@/app/api/services";
 import SelectionBanner from "@/components/SelectionBanner";
 
 // events array has objects that will be able to be created and deleted
 // upon backend finalization
-const events = [
-  {
-    title: "Placeholder",
-    start: new Date(),
-    end: new Date(2024, 5, 15),
-  },
-];
 
 // for now all of the card PROPS are placeholders until the backend is finalized
 export default function DemoApp() {
-
+  const [events, setEvents] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
-
+  console.log(events);
   const openModal = () => {
     setModalOpen(true);
   };
@@ -41,11 +35,30 @@ export default function DemoApp() {
     setModalOpen(false);
   };
 
+  useEffect(() => {
+    getEvents();
+  }, []);
+
+  async function getEvents(req, res) {
+    try {
+      const result = await apiClient.get("/ptos");
+      const eventsGet = result.data.map((item) => ({
+        title: item.full_name,
+        start: new Date(item.start_date),
+        end: new Date(item.end_date),
+      }));
+      console.log(eventsGet);
+      setEvents(eventsGet);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <PTOWrapper>
       <PTOtitleWrapper>
         <h2>Hello</h2>
-        <Button  onClick={openModal} text={"Request PTO"} />
+        <Button onClick={openModal} text={"Request PTO"} />
         {modalOpen && <CalendarModal onClose={closeModal} />}
       </PTOtitleWrapper>
       <PTOCardWrapper>
