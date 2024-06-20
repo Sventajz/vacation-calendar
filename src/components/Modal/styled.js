@@ -1,40 +1,42 @@
-import styled, {css} from 'styled-components';
+import styled, { css } from "styled-components";
 
 export const LoginModal = styled.div`
-  display: flex; 
-  overflow-y: auto; 
-  overflow-x: hidden; 
-  position: fixed; 
-  top: 0; 
-  right: 0; 
-  left: 0; 
-  z-index: 5; 
-  justify-content: center; 
-  align-items: center; 
-  width: 100%; 
+  display: flex;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 5;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   height: 100%;
 `;
 
 export const ModalWindow = styled.div`
-  position: relative; 
+  position: relative;
   min-width: 36%;
   max-width: 90vw;
   height: auto;
 `;
 
 export const Wrapper = styled.div`
-  border-radius: 24px; 
-  width: 100%; 
+  border-radius: 24px;
+  width: 100%;
   background-color: #ffffff;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px 0 rgba(0, 0, 0, 0.06);
   gap: 8px;
   padding: 6px 30px 14px 30px;
 `;
 
 export const TitleLogin = styled.h1`
-  color: #151A20;
+  color: #151a20;
   font-size: 38px;
-  line-height: 38px; 
+  line-height: 38px;
   font-weight: 700;
   margin-bottom: 14px;
   ${({ $isInModal }) =>
@@ -47,7 +49,7 @@ export const TitleLogin = styled.h1`
 export const FormLogin = styled.form`
   display: grid;
   margin-top: 1rem;
-  padding: 1.5rem; 
+  padding: 1.5rem;
   gap: 24px;
 `;
 
@@ -63,14 +65,14 @@ export const FormFields = styled.div`
 
 export const BtnLogin = styled.button`
   padding: 13px 32px;
-  border-radius: 16px; 
-  width: 100%; 
+  border-radius: 16px;
+  width: 100%;
   font-size: 15px;
-  line-height: 20px; 
+  line-height: 20px;
   font-weight: 700;
-  text-align: center; 
+  text-align: center;
   color: #ffffff;
-  background-color: #5C36FF;
+  background-color: #5c36ff;
   border-style: solid;
   gap: 10px;
   cursor: pointer;
@@ -90,21 +92,23 @@ export const BaseLabelInputDivision = styled.div`
   gap: 4px;
   label {
     font-size: 15px;
-    line-height: 20px; 
-    font-weight: 700; 
-    color: #566875; 
+    line-height: 20px;
+    font-weight: 700;
+    color: #566875;
     padding-left: 16px;
   }
-  input, select, textarea {
-    height: 40px; 
-    padding-left: 12px; 
-    border-radius: 12px; 
-    border-width: 1px; 
-    border-color: #BBC6CF;
+  input,
+  select,
+  textarea {
+    height: 40px;
+    padding-left: 12px;
+    border-radius: 12px;
+    border-width: 1px;
+    border-color: #bbc6cf;
     border-style: solid;
-    width: 100%; 
-    color: #566875; 
-    background-color: #FFFFFF;
+    width: 100%;
+    color: #566875;
+    background-color: #ffffff;
     font-size: 18px;
   }
   ::-webkit-calendar-picker-indicator {
@@ -131,7 +135,7 @@ export const PasswordLabelInputDivision = styled(BaseLabelInputDivision)`
     cursor: pointer;
     background-color: transparent;
     border: none;
-    color: #4A4A4A; /* Dark grey color */
+    color: #4a4a4a; /* Dark grey color */
   }
 `;
 
@@ -150,15 +154,15 @@ export const ExitButton = styled.button`
   cursor: pointer;
   background-color: transparent;
   border: none;
-  color: #4A4A4A; /* Dark grey color */
+  color: #4a4a4a; /* Dark grey color */
 
   :hover {
-  color: #111827; 
+    color: #111827;
   }
 `;
 
 export const BackgroundOverlay = styled.div`
-  display: ${({ isVisible }) => (isVisible ? 'block' : 'none')};
+  display: ${({ isVisible }) => (isVisible ? "block" : "none")};
   position: fixed;
   top: 0;
   left: 0;

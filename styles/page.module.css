@@ -1,5 +1,5 @@
 .main {
-  background-color :#f6f6f6;
+  background-color: #f6f6f6;
   height: 100vh;
   width: 100vw;
   position: relative;
@@ -31,48 +31,49 @@
 }
 
 .loginModal {
-  display: flex; 
-  overflow-y: auto; 
-  overflow-x: hidden; 
-  position: absolute; 
-  top: 0; 
-  right: 0; 
-  left: 0; 
-  z-index: 50; 
-  justify-content: center; 
-  align-items: center; 
-  width: 100%; 
-  height: 100%; 
+  display: flex;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 50;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .modalWindow {
-  position: relative; 
+  position: relative;
   width: 36%;
   min-width: 375px;
-  height: auto; 
+  height: auto;
 }
 
-
 .wrapper {
-  border-radius: 24px; 
-  width: 100%; 
+  border-radius: 24px;
+  width: 100%;
   background-color: #ffffff;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px 0 rgba(0, 0, 0, 0.06);
   gap: 8px;
   padding: 10px;
 }
 
 .titleLogin {
-  color: #151A20;
+  color: #151a20;
   font-size: 48px;
-  line-height: 64px; 
+  line-height: 64px;
   font-weight: 700;
 }
 
 .formLogin {
   display: grid;
   margin-top: 1rem;
-  padding: 1.5rem; 
+  padding: 1.5rem;
   margin-top: 1rem;
   gap: 24px;
 }
@@ -92,26 +93,26 @@
   gap: 4px;
 }
 
-.labelInputDivision label{
+.labelInputDivision label {
   display: grid;
   font-size: 15px;
-  line-height: 20px; 
-  font-weight: 700; 
-  color: #566875; 
+  line-height: 20px;
+  font-weight: 700;
+  color: #566875;
   padding-left: 16px;
 }
 
-.labelInputDivision input{
+.labelInputDivision input {
   display: grid;
   position: relative;
-  height: 50px; 
-  padding: 12px; 
-  border-radius: 12px; 
-  border-width: 1px; 
-  border-color: #D1D5DB; 
-  width: 100%; 
-  color: #BBC6CF; 
-  background-color: #FFFFFF;
+  height: 50px;
+  padding: 12px;
+  border-radius: 12px;
+  border-width: 1px;
+  border-color: #d1d5db;
+  width: 100%;
+  color: #bbc6cf;
+  background-color: #ffffff;
   font-size: 18px;
 }
 
@@ -132,14 +133,14 @@
 .btnLogin {
   display: grid;
   padding: 13px 32px 13px 32px;
-  border-radius: 16px; 
-  width: 100%; 
+  border-radius: 16px;
+  width: 100%;
   font-size: 15px;
-  line-height: 20px; 
+  line-height: 20px;
   font-weight: 700;
-  text-align: center; 
+  text-align: center;
   color: #ffffff;
-  background-color: #5C36FF;
+  background-color: #5c36ff;
   gap: 10px;
 }
 
@@ -154,24 +155,23 @@
 }
 
 .modalLogin {
-  display: flex; 
-  overflow-y: auto; 
-  overflow-x: hidden; 
-  position: fixed; 
-  top: 0; 
-  right: 0; 
-  left: 0; 
-  z-index: 50; 
-  justify-content: center; 
-  align-items: center; 
-  width: 100%; 
+  display: flex;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 50;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   height: 100%;
 }
 
 .forma {
-  position: relative; 
-  width: 100%; 
-  max-width: 28rem; 
-  height: auto; 
-
+  position: relative;
+  width: 100%;
+  max-width: 28rem;
+  height: auto;
 }
