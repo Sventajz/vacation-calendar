@@ -1,4 +1,4 @@
-import Modal from '../Modal/index.js';
+import Modal from "../Modal/index.js";
 
 const CalendarModal = ({ onClose }) => {
   const handlePtoRequest = async () => {

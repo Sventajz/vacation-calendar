@@ -30,7 +30,6 @@ const events = [
 
 // for now all of the card PROPS are placeholders until the backend is finalized
 export default function DemoApp() {
-
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -45,7 +44,7 @@ export default function DemoApp() {
     <PTOWrapper>
       <PTOtitleWrapper>
         <h2>Hello</h2>
-        <Button  onClick={openModal} text={"Request PTO"} />
+        <Button onClick={openModal} text={"Request PTO"} />
         {modalOpen && <CalendarModal onClose={closeModal} />}
       </PTOtitleWrapper>
       <PTOCardWrapper>

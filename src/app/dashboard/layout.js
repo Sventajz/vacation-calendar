@@ -11,10 +11,9 @@ async function GetUserInfo() {
     const user = await axios.get("http://localhost:5000/api/user");
     console.log(user.data);
   } catch (error) {
-    console.error('Error fetching user info:', error);
+    console.error("Error fetching user info:", error);
   }
 }
-
 
 export default function RootLayout({ children }) {
   const sheet = typeof window === "undefined" ? new ServerStyleSheet() : null;
