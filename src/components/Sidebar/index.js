@@ -2,6 +2,7 @@
 import { useContext, useState } from "react";
 import { usePathname } from "next/navigation";
 
+import apiClient from "@/app/api/services";
 import {
   Banner,
   SideBarButtons,
@@ -11,6 +12,7 @@ import {
   StyledLink,
   HamburgerButton,
 } from "./styled";
+import UserContext from "../UserContext/UserContex";
 
 async function Logout() {
   try {
@@ -21,8 +23,6 @@ async function Logout() {
   }
 }
 
-import UserContext from "../UserContext/UserContex";
-import apiClient from "@/app/api/services";
 export default function SideBar({}) {
   const [isOpen, setIsOpen] = useState(true);
   const user = useContext(UserContext);

@@ -41,11 +41,12 @@ export default function DemoApp() {
 
   async function getEvents(req, res) {
     try {
-      const result = await apiClient.get("/ptos");
+      const result = await apiClient.get("/events");
       const eventsGet = result.data.map((item) => ({
         title: item.full_name,
         start: new Date(item.start_date),
         end: new Date(item.end_date),
+        status: item.status,
       }));
       console.log(eventsGet);
       setEvents(eventsGet);
@@ -98,7 +99,7 @@ export default function DemoApp() {
           weekends={true}
           events={events}
           eventContent={renderEventContent}
-          eventColor="#5C36FF"
+          displayEventTime={false}
           themeSystem="standard"
         />
       </CalendarWrapper>
@@ -107,10 +108,15 @@ export default function DemoApp() {
 }
 
 function renderEventContent(eventInfo) {
+  const opacity = eventInfo.event.extendedProps.status === "Pending" ? 0.6 : 1;
+  const backgroundColor =
+    eventInfo.event.extendedProps.status === "Pending"
+      ? "#5C36FF" // Original color for pending status
+      : "blue"; // Original color for other statuses
   return (
-    <>
+    <div style={{ opacity, backgroundColor }}>
       <b>{eventInfo.timeText}</b>
       <i>{eventInfo.event.title}</i>
-    </>
+    </div>
   );
 }

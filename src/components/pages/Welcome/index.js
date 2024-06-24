@@ -1,16 +1,22 @@
 "use client";
+
 import Button from "../../Button";
 import Link from "next/link";
-import { AvatarImg, WelcomeImg, WelcomeWrapper, WelcomeText } from "./styled";
+import { useContext } from "react";
 
-export default function Welcome({ username }) {
+import { AvatarImg, WelcomeImg, WelcomeWrapper, WelcomeText } from "./styled";
+import UserContext from "@/components/UserContext/UserContex";
+
+export default function Welcome() {
+  const user = useContext(UserContext);
+
   return (
     <WelcomeWrapper>
       <WelcomeImg>
         <AvatarImg src="/avatar.png" alt="Avatar picture" />
       </WelcomeImg>
       <WelcomeText>
-        <h3>Welcome, {username}</h3>
+        <h3>Welcome, {user.full_name}</h3>
         <p>
           We are excited to have you here. This platform is designed to
           streamline and simplify the process of managing Paid Time Off (PTO)
