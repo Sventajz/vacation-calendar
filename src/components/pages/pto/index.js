@@ -85,6 +85,7 @@ export default function DemoApp() {
           text={"(from last year)"}
         />
         <PTOCard title={"UPCOMING PTO"} daysCounter={2} />
+
         <PTOCard title={"PENDING PTO"} daysCounter={3} />
       </PTOCardWrapper>
       <SelectionBanner />
