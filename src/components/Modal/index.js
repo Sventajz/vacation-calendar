@@ -42,6 +42,17 @@ const ReusableModal = ({ isLogin, isPtoRequest, onClose, onSubmit }) => {
     }
   };
 
+  const handlePtoSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      console.log("submit: ", leaveType, dateStart, dateEnd, explanation);
+      await onSubmit(leaveType, dateStart, dateEnd, explanation);
+      handleClose();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleClose = () => {
     onClose();
   };

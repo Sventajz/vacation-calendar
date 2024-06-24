@@ -2,20 +2,33 @@
 
 import { ServerStyleSheet, StyleSheetManager } from "styled-components";
 import { useServerInsertedHTML } from "next/navigation";
-import SideBar from "../../components/Sidebar";
 import { MainStyle, DashboardWrapper } from "./styled";
-import axios from "axios";
+import { useEffect, useState } from "react";
 
-async function GetUserInfo() {
-  try {
-    const user = await axios.get("http://localhost:5000/api/user");
-    console.log(user.data);
-  } catch (error) {
-    console.error("Error fetching user info:", error);
-  }
-}
+import apiClient from "../api/services";
+import SideBar from "../../components/Sidebar";
+import UserContext from "@/components/UserContext/UserContex";
 
 export default function RootLayout({ children }) {
+  const [userInfo, setUserInfo] = useState({});
+
+  async function GetUserInfo() {
+    try {
+      const user = await apiClient.get("/user");
+      const userInformation = user.data[0];
+      setUserInfo((userInfo) => ({
+        ...userInfo,
+        ...userInformation,
+      }));
+    } catch (error) {
+      console.error("Error fetching user info:", error);
+    }
+  }
+
+  useEffect(() => {
+    GetUserInfo();
+  }, []);
+
   const sheet = typeof window === "undefined" ? new ServerStyleSheet() : null;
 
   useServerInsertedHTML(() => {
@@ -23,10 +36,12 @@ export default function RootLayout({ children }) {
   });
 
   const content = (
-    <DashboardWrapper>
-      <SideBar />
-      <MainStyle>{children}</MainStyle>
-    </DashboardWrapper>
+    <UserContext.Provider value={userInfo}>
+      <DashboardWrapper>
+        <SideBar />
+        <MainStyle>{children}</MainStyle>
+      </DashboardWrapper>
+    </UserContext.Provider>
   );
 
   return (
