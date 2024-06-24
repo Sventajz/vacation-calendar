@@ -1,5 +1,5 @@
 // pages/welcome.js
-import withAuth from '../components/Login/withAuth';
+import withAuth from "../components/Login/withAuth";
 
 function WelcomePage() {
   return <h1>Welcome!</h1>;

@@ -6,7 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "prettier --check .",
+    "format": "prettier --write .",
+    "next_lint": "next lint"
+  },
+  "husky": {
+  "hooks": {
+    "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*": "prettier --write"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
@@ -15,26 +25,34 @@
     "@fullcalendar/core": "^6.1.14",
     "@fullcalendar/daygrid": "^6.1.14",
     "@fullcalendar/react": "^6.1.14",
-    "axios": "^1.7.2",
-    "firebase": "^10.12.2",
+    "@next/eslint-plugin-next": "^14.2.4",
     "antd": "^5.18.0",
+    "axios": "^1.7.2",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "eslint-config-prettier": "^9.1.0",
     "express": "^4.19.2",
+    "firebase": "^10.12.2",
     "font-awesome": "^4.7.0",
+    "husky": "^9.0.11",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.1",
     "next": "14.2.3",
     "preact": "^10.22.0",
+    "prettier": "^3.3.2",
     "react": "^18",
     "react-dom": "^18",
     "react-fontawesome": "^1.7.1",
     "styled-components": "^6.1.11"
   },
+  "type": "module",
   "devDependencies": {
+    "@eslint/js": "^9.5.0",
     "babel-plugin-styled-components": "^2.1.4",
-    "eslint": "^8",
+    "eslint": "^8.57.0",
     "eslint-config-next": "14.2.3",
+    "eslint-plugin-react": "^7.34.3",
+    "globals": "^15.6.0",
     "postcss": "^8"
   }
 }
