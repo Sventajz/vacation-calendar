@@ -117,7 +117,9 @@ function renderEventContent(eventInfo) {
   return (
     <div style={{ opacity, backgroundColor }}>
       <b>{eventInfo.timeText}</b>
-      <i>{eventInfo.event.title}</i>
+      <p>
+        {eventInfo.event.title} : {eventInfo.event.extendedProps.status}
+      </p>
     </div>
   );
 }

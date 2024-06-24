@@ -16,6 +16,7 @@ export default function RootLayout({ children }) {
     try {
       const user = await apiClient.get("/user");
       const userInformation = user.data[0];
+      console.log(userInformation);
       setUserInfo((userInfo) => ({
         ...userInfo,
         ...userInformation,
