@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import apiClient from "@/app/api/services";
 import Button from "@/components/Button";
@@ -8,25 +8,17 @@ import { PTOCardWrapper } from "../pto/styled";
 import { PTOtitleWrapper } from "../pto/styled";
 import PTOCard from "@/components/PTOCard";
 import SelectionBanner from "@/components/SelectionBanner";
-import UserContext from "@/components/UserContext/UserContex";
 
 export default function EmployeeComponent() {
   const [requests, setRequests] = useState([]);
-  const user = useContext(UserContext);
 
   useEffect(() => {
-    checkUserPermission();
     getEventsForApproval();
   }, []);
 
-  function checkUserPermission() {
-    if (user.permission_id < 1 || user.permission_id == null) {
-      window.location.href = "/";
-    }
-  }
-  const getEventsForApproval = async () => {
+  const getEventsForApproval = useCallback(async () => {
+    console.log(2);
     try {
-      console.log(5);
       const result = await apiClient.get("/getEventApprove");
       const eventsGet = result.data.map((item) => ({
         id: item.id,
@@ -36,20 +28,17 @@ export default function EmployeeComponent() {
         status: item.status,
         counter: item.counter,
       }));
-      console.log(eventsGet);
+      console.log(4);
       setRequests(eventsGet);
     } catch (error) {
       console.log(error);
     }
-  };
+  }, []);
 
   const handleEventUpdate = useCallback(() => {
-    setRequests((prevRequests) => {
-      getEventsForApproval();
-      console.log(prevRequests);
-      return prevRequests;
-    });
-  }, [getEventsForApproval]);
+    getEventsForApproval();
+  }, []);
+
   return (
     <EmployeePage>
       <PTOtitleWrapper>

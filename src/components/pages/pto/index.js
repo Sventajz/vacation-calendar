@@ -1,7 +1,7 @@
 "use client";
 import "./calendarStyle.css";
 
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 
@@ -17,23 +17,10 @@ import {
 } from "./styled";
 import PTOCard from "@/components/PTOCard";
 import SelectionBanner from "@/components/SelectionBanner";
-import UserContext from "@/components/UserContext/UserContex";
 
 export default function DemoApp() {
   const [events, setEvents] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
-  const user = useContext(UserContext);
-
-  useEffect(() => {
-    checkUserPermission();
-  }, []);
-
-  function checkUserPermission() {
-    if (user.permission_id < 1 || user.permission_id == null) {
-      console.log("heelo");
-      window.location.href = "/";
-    }
-  }
 
   console.log(events);
   const openModal = () => {

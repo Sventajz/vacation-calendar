@@ -19,7 +19,7 @@ export default function EmployeeCard({
   const approveEvent = async () => {
     await apiClient.put(`/updateEvent/${id}`);
 
-    handleEventUpdate();
+    await handleEventUpdate();
   };
 
   return (
