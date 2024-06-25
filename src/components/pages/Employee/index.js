@@ -29,7 +29,7 @@ export default function EmployeeComponent() {
         counter: item.counter,
       }));
       console.log(4);
-      setRequests(eventsGet);
+      setRequests((item) => (item = eventsGet));
     } catch (error) {
       console.log(error);
     }
