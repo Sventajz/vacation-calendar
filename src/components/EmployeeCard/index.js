@@ -1,36 +1,31 @@
 "use client";
 
+import apiClient from "@/app/api/services";
+import Button from "../Button";
 import {
   EmployeeCardWrapper,
   EmployeeInfo,
   DateStyles,
   StyledName,
 } from "./styled";
-import apiClient from "@/app/api/services";
-import Button from "../Button";
+
 export default function EmployeeCard({
   name,
   startDate,
   endDate,
   id,
-  onUpdate,
-  counter,
+  handleEventUpdate,
 }) {
-  const approveEvent = async (req, res) => {
-    try {
-      await apiClient.put(`/updateEvent/${id}`);
-      onUpdate();
-    } catch (error) {
-      console.log(error);
-    }
+  const approveEvent = async () => {
+    await apiClient.put(`/updateEvent/${id}`);
+
+    handleEventUpdate();
   };
 
   return (
     <EmployeeCardWrapper>
       <EmployeeInfo>
-        <StyledName>
-          {name} {counter}
-        </StyledName>
+        <StyledName>{name}</StyledName>
         <DateStyles>
           ( {startDate.toDateString()} - {endDate.toDateString()})
         </DateStyles>

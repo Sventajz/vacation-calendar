@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
 
 import apiClient from "@/app/api/services";
 import Button from "@/components/Button";
@@ -8,40 +8,48 @@ import { PTOCardWrapper } from "../pto/styled";
 import { PTOtitleWrapper } from "../pto/styled";
 import PTOCard from "@/components/PTOCard";
 import SelectionBanner from "@/components/SelectionBanner";
+import UserContext from "@/components/UserContext/UserContex";
 
 export default function EmployeeComponent() {
   const [requests, setRequests] = useState([]);
-  const [eventTrigger, setEventTrigger] = useState(false);
+  const user = useContext(UserContext);
 
   useEffect(() => {
+    checkUserPermission();
     getEventsForApproval();
-  }, [eventTrigger]);
+  }, []);
 
-  async function getEventsForApproval() {
+  function checkUserPermission() {
+    if (user.permission_id < 1 || user.permission_id == null) {
+      window.location.href = "/";
+    }
+  }
+  const getEventsForApproval = async () => {
     try {
-      const user = await apiClient.get("/user");
-      const userInfo = user.data[0].permission_id;
-      const result = await apiClient.get("/events");
-      const eventsGet = result.data
-        .filter((item) => item.counter === userInfo - 1)
-        .map((item) => ({
-          id: item.id,
-          title: item.full_name,
-          start: new Date(item.start_date),
-          end: new Date(item.end_date),
-          status: item.status,
-          counter: item.counter,
-        }));
+      console.log(5);
+      const result = await apiClient.get("/getEventApprove");
+      const eventsGet = result.data.map((item) => ({
+        id: item.id,
+        title: item.full_name,
+        start: new Date(item.start_date),
+        end: new Date(item.end_date),
+        status: item.status,
+        counter: item.counter,
+      }));
+      console.log(eventsGet);
       setRequests(eventsGet);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
-  async function handleEventUpdate() {
-    setEventTrigger((prev) => !prev);
-  }
-
+  const handleEventUpdate = useCallback(() => {
+    setRequests((prevRequests) => {
+      getEventsForApproval();
+      console.log(prevRequests);
+      return prevRequests;
+    });
+  }, [getEventsForApproval]);
   return (
     <EmployeePage>
       <PTOtitleWrapper>
@@ -67,7 +75,7 @@ export default function EmployeeComponent() {
             startDate={request.start}
             endDate={request.end}
             counter={request.counter}
-            onUpdate={handleEventUpdate}
+            handleEventUpdate={handleEventUpdate}
           />
         ))}
       </EmployeeCardWrapper>

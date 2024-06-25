@@ -1,13 +1,12 @@
 "use client";
+import "./calendarStyle.css";
+
+import { useState, useEffect, useContext } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import PTOCard from "@/components/PTOCard";
+
+import apiClient from "@/app/api/services";
 import Button from "@/components/Button";
-import CalendarModal from "@/components/RequestPtoModal";
-import { useState, useEffect } from "react";
-// Had to import basic CSS file so that i could override the
-// styling of the calendar library
-import "./calendarStyle.css";
 import ReusableModal from "@/components/Modal";
 import {
   PTOWrapper,
@@ -16,16 +15,26 @@ import {
   CalendarWrapper,
   CalendarSelection,
 } from "./styled";
-import apiClient from "@/app/api/services";
+import PTOCard from "@/components/PTOCard";
 import SelectionBanner from "@/components/SelectionBanner";
+import UserContext from "@/components/UserContext/UserContex";
 
-// events array has objects that will be able to be created and deleted
-// upon backend finalization
-
-// for now all of the card PROPS are placeholders until the backend is finalized
 export default function DemoApp() {
   const [events, setEvents] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
+  const user = useContext(UserContext);
+
+  useEffect(() => {
+    checkUserPermission();
+  }, []);
+
+  function checkUserPermission() {
+    if (user.permission_id < 1 || user.permission_id == null) {
+      console.log("heelo");
+      window.location.href = "/";
+    }
+  }
+
   console.log(events);
   const openModal = () => {
     setModalOpen(true);
@@ -90,10 +99,7 @@ export default function DemoApp() {
       </PTOCardWrapper>
       <SelectionBanner />
       <CalendarWrapper>
-        <CalendarSelection>
-          <p>Placeholder text</p>
-          <p>Placeholder text</p>
-        </CalendarSelection>
+        <CalendarSelection />
         <FullCalendar
           plugins={[dayGridPlugin]}
           initialView="dayGridMonth"
@@ -111,9 +117,7 @@ export default function DemoApp() {
 function renderEventContent(eventInfo) {
   const opacity = eventInfo.event.extendedProps.status === "Pending" ? 0.6 : 1;
   const backgroundColor =
-    eventInfo.event.extendedProps.status === "Pending"
-      ? "#5C36FF" // Original color for pending status
-      : "blue"; // Original color for other statuses
+    eventInfo.event.extendedProps.status === "Pending" ? "#5C36FF" : "blue";
   return (
     <div style={{ opacity, backgroundColor }}>
       <b>{eventInfo.timeText}</b>
