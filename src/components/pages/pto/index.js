@@ -22,14 +22,13 @@ export default function DemoApp() {
   const [events, setEvents] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
 
-  console.log(events);
   const openModal = () => {
-    setModalOpen(true);
+    setModalOpen((value) => !value);
   };
 
-  const closeModal = () => {
-    setModalOpen(false);
-  };
+  // const closeModal = () => {
+  //   setModalOpen(false);
+  // };
 
   useEffect(() => {
     getEvents();
@@ -71,7 +70,7 @@ export default function DemoApp() {
         <h2>Hello</h2>
         <Button onClick={openModal} text={"Request PTO"} />
         {modalOpen && (
-          <ReusableModal onClose={closeModal} onSubmit={postEvent} />
+          <ReusableModal onClose={openModal} onSubmit={postEvent} />
         )}
       </PTOtitleWrapper>
       <PTOCardWrapper>
