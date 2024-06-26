@@ -4,13 +4,15 @@ import Link from "next/link";
 export const SideBarComponent = styled.div`
   background-color: #ffffff;
   height: 100%;
-  width: ${(props) => (props.$isOpen ? "250px" : "60px")};
+  width: ${(props) => (props.$isOpen ? "220px" : "50px")};
   display: flex;
   flex-direction: column;
-  margin-right: 20px;
   z-index: 2;
   box-shadow: 2px 2px rgba(1, 1, 1, 0.1);
   transition: width 0.3s ease;
+  @media (max-width: 950px) {
+    height: 100vh;
+  }
 `;
 
 export const Banner = styled.div`
@@ -35,7 +37,7 @@ export const Banner = styled.div`
 export const SideBarButtons = styled.li`
   font-weight: bold;
   display: flex;
-  justify-content: ${(props) => (props.$isOpen ? "left" : "center")};
+  justify-content: left;
   align-items: center;
   height: 40px;
   margin: 5px;
@@ -60,6 +62,12 @@ export const SideBarButtons = styled.li`
       border-bottom: 1px solid #dadfe4;
       border-radius: 0px;
       padding-bottom: 5px;
+    `}
+    ${({ $isOpen }) =>
+    !$isOpen &&
+    css`
+      justify-content: center;
+      transition: 0.5s;
     `}
 `;
 

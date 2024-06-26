@@ -28,7 +28,11 @@ export default function SideBar({}) {
   const user = useContext(UserContext);
 
   const toggleIsOpen = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((prev) => {
+      console.log(prev);
+      console.log(!prev);
+      return !prev;
+    });
   };
 
   const pathname = usePathname();
@@ -45,21 +49,30 @@ export default function SideBar({}) {
         {isOpen && <h3>PTO System</h3>}
       </Banner>
       <SideBarItems>
-        <StyledLink href="/dashboard/welcome">
-          <SideBarButtons $active={pathname === "/dashboard/welcome"}>
+        <StyledLink href="/dashboard/welcome" $isOpen={isOpen}>
+          <SideBarButtons
+            $active={pathname === "/dashboard/welcome"}
+            $isOpen={isOpen}
+          >
             <img src="/home.svg" alt="home svg icon" height={20} width={20} />
             {isOpen && <span>Home</span>}
           </SideBarButtons>
         </StyledLink>
         <StyledLink href="/dashboard/pto">
-          <SideBarButtons $active={pathname === "/dashboard/pto"}>
+          <SideBarButtons
+            $active={pathname === "/dashboard/pto"}
+            $isOpen={isOpen}
+          >
             <img src="/work.svg" alt="home svg icon" height={20} width={20} />
             {isOpen && <span>PTO</span>}
           </SideBarButtons>
         </StyledLink>
         {user.permission_id > 0 && (
           <StyledLink href="/dashboard/employees">
-            <SideBarButtons $active={pathname === "/dashboard/employees"}>
+            <SideBarButtons
+              $active={pathname === "/dashboard/employees"}
+              $isOpen={isOpen}
+            >
               <img src="/user.svg" alt="home svg icon" height={20} width={20} />
               {isOpen && <span>Employees</span>}
             </SideBarButtons>
@@ -67,12 +80,12 @@ export default function SideBar({}) {
         )}
       </SideBarItems>
       <UserControls>
-        <SideBarButtons $borderbottom={true}>
+        <SideBarButtons $borderbottom={true} $isOpen={isOpen}>
           <img src="/user.svg" alt="home svg icon" height={20} width={20} />
           {isOpen && <span>{user.full_name}</span>}
         </SideBarButtons>
         <br />
-        <SideBarButtons onClick={Logout}>
+        <SideBarButtons onClick={Logout} $isOpen={isOpen}>
           <img src="/logout.svg" alt="home svg icon" height={20} width={20} />
           {isOpen && <span>LogOut</span>}
         </SideBarButtons>

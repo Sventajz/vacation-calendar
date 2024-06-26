@@ -7,6 +7,9 @@ export const DashboardWrapper = styled.div`
   grid-template-columns: 20% 80%;
   min-height: 100vh;
   width: 100%;
+  @media (max-width: 950px) {
+    display: flex;
+  }
 `;
 
 export const MainStyle = styled.main`
