@@ -63,7 +63,7 @@ export default function SideBar({}) {
             {isOpen && <span>PTO</span>}
           </SideBarButtons>
         </StyledLink>
-        {user.permission_id > 0 && (
+        {user.permission_id > 1 && (
           <StyledLink href="/dashboard/employees">
             <SideBarButtons
               $active={pathname === "/dashboard/employees"}
