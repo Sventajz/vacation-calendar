@@ -51,7 +51,7 @@ export default function DemoApp() {
   }
   async function postEvent(leaveType, dateStart, dateEnd, explanation) {
     try {
-      const res = await apiClient.post("/addEvent", {
+      const res = await apiClient.post("/event", {
         type: leaveType,
         start_date: dateStart,
         end_date: dateEnd,

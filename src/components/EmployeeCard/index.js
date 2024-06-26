@@ -23,12 +23,14 @@ export default function EmployeeCard({
   };
 
   const approveEvent = async () => {
-    await apiClient.put(`/updateEvent/${id}`);
+    await apiClient.put(`/event/${id}`);
 
     await handleEventUpdate();
   };
   const declineEvent = async () => {
-    console.log("event declined");
+    await apiClient.delete(`/event/${id}`);
+
+    await handleEventUpdate();
   };
 
   return (
