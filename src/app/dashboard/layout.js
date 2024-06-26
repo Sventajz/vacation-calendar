@@ -1,7 +1,7 @@
 "use client";
 
 import { ServerStyleSheet, StyleSheetManager } from "styled-components";
-import { useServerInsertedHTML } from "next/navigation";
+import { useServerInsertedHTML, useRouter } from "next/navigation";
 import { MainStyle, DashboardWrapper } from "./styled";
 import { useEffect, useState } from "react";
 
@@ -11,7 +11,7 @@ import UserContext from "@/components/UserContext/UserContex";
 
 export default function RootLayout({ children }) {
   const [userInfo, setUserInfo] = useState({});
-
+  const router = useRouter();
   async function GetUserInfo() {
     try {
       const user = await apiClient.get("/user");
@@ -27,7 +27,19 @@ export default function RootLayout({ children }) {
 
   useEffect(() => {
     GetUserInfo();
+    const checkAuth = () => {
+      const permission = decodedToken();
+      if (permission == undefined) router.push("/");
+    };
+    checkAuth();
   }, []);
+
+  const decodedToken = () => {
+    const token = localStorage.getItem("admin");
+    if (token == null) return router.push("/");
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    return payload.permission_id;
+  };
 
   const sheet = typeof window === "undefined" ? new ServerStyleSheet() : null;
 

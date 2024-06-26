@@ -8,13 +8,26 @@ import { PTOCardWrapper } from "../pto/styled";
 import { PTOtitleWrapper } from "../pto/styled";
 import PTOCard from "@/components/PTOCard";
 import SelectionBanner from "@/components/SelectionBanner";
+import { useRouter } from "next/navigation";
 
 export default function EmployeeComponent() {
   const [requests, setRequests] = useState([]);
-
+  const router = useRouter();
   useEffect(() => {
     getEventsForApproval();
+    const checkAuth = () => {
+      const permission = decodedToken();
+      if (permission < 2) router.push("/");
+    };
+    checkAuth();
   }, []);
+
+  const decodedToken = () => {
+    const token = localStorage.getItem("admin");
+    if (token == null) return router.push("/");
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    return payload.permission_id;
+  };
 
   const getEventsForApproval = useCallback(async () => {
     try {
