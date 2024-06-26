@@ -17,7 +17,6 @@ export default function EmployeeComponent() {
   }, []);
 
   const getEventsForApproval = useCallback(async () => {
-    console.log(2);
     try {
       const result = await apiClient.get("/getEventApprove");
       const eventsGet = result.data.map((item) => ({
@@ -28,7 +27,6 @@ export default function EmployeeComponent() {
         status: item.status,
         counter: item.counter,
       }));
-      console.log(4);
       setRequests((item) => (item = eventsGet));
     } catch (error) {
       console.log(error);

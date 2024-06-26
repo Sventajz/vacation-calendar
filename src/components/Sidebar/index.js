@@ -28,11 +28,7 @@ export default function SideBar({}) {
   const user = useContext(UserContext);
 
   const toggleIsOpen = () => {
-    setIsOpen((prev) => {
-      console.log(prev);
-      console.log(!prev);
-      return !prev;
-    });
+    setIsOpen((prev) => !prev);
   };
 
   const pathname = usePathname();
