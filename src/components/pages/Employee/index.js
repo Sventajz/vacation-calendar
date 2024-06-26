@@ -1,57 +1,41 @@
+import { useState, useEffect, useCallback } from "react";
+
+import apiClient from "@/app/api/services";
+import Button from "@/components/Button";
 import EmployeeCard from "@/components/EmployeeCard";
 import { EmployeePage, EmployeeCardWrapper } from "./styled";
 import { PTOCardWrapper } from "../pto/styled";
 import { PTOtitleWrapper } from "../pto/styled";
 import PTOCard from "@/components/PTOCard";
-import Button from "@/components/Button";
-
 import SelectionBanner from "@/components/SelectionBanner";
+
 export default function EmployeeComponent() {
-  const requests = [
-    { id: 1, name: "Sven", lastName: "Tajz", dates: "June 10 - June 15" },
-    {
-      id: 2,
-      name: "Tvrtko",
-      lastName: "Kaurinovic",
-      dates: "June 16 - June 20",
-    },
-    {
-      id: 2,
-      name: "Tvrtko",
-      lastName: "Kaurinovic",
-      dates: "June 16 - June 20",
-    },
-    {
-      id: 2,
-      name: "Tvrtko",
-      lastName: "Kaurinovic",
-      dates: "June 16 - June 20",
-    },
-    {
-      id: 2,
-      name: "Tvrtko",
-      lastName: "Kaurinovic",
-      dates: "June 16 - June 20",
-    },
-    {
-      id: 2,
-      name: "Tvrtko",
-      lastName: "Kaurinovic",
-      dates: "June 16 - June 20",
-    },
-    {
-      id: 2,
-      name: "Tvrtko",
-      lastName: "Kaurinovic",
-      dates: "June 16 - June 20",
-    },
-    {
-      id: 2,
-      name: "Tvrtko",
-      lastName: "Kaurinovic",
-      dates: "June 16 - June 20",
-    },
-  ];
+  const [requests, setRequests] = useState([]);
+
+  useEffect(() => {
+    getEventsForApproval();
+  }, []);
+
+  const getEventsForApproval = useCallback(async () => {
+    try {
+      const result = await apiClient.get("/getEventApprove");
+      const eventsGet = result.data.map((item) => ({
+        id: item.id,
+        title: item.full_name,
+        start: new Date(item.start_date),
+        end: new Date(item.end_date),
+        status: item.status,
+        counter: item.counter,
+      }));
+      setRequests((item) => (item = eventsGet));
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  const handleEventUpdate = useCallback(() => {
+    getEventsForApproval();
+  }, []);
 
   return (
     <EmployeePage>
@@ -73,9 +57,12 @@ export default function EmployeeComponent() {
         {requests.map((request) => (
           <EmployeeCard
             key={request.id}
-            name={request.name}
-            lastName={request.lastName}
-            dates={request.dates}
+            id={request.id}
+            name={request.title}
+            startDate={request.start}
+            endDate={request.end}
+            counter={request.counter}
+            handleEventUpdate={handleEventUpdate}
           />
         ))}
       </EmployeeCardWrapper>

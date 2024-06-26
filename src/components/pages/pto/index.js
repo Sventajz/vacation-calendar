@@ -1,13 +1,12 @@
 "use client";
+import "./calendarStyle.css";
+
+import { useState, useEffect } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import PTOCard from "@/components/PTOCard";
+
+import apiClient from "@/app/api/services";
 import Button from "@/components/Button";
-import CalendarModal from "@/components/RequestPtoModal";
-import { useState, useEffect } from "react";
-// Had to import basic CSS file so that i could override the
-// styling of the calendar library
-import "./calendarStyle.css";
 import ReusableModal from "@/components/Modal";
 import {
   PTOWrapper,
@@ -16,24 +15,20 @@ import {
   CalendarWrapper,
   CalendarSelection,
 } from "./styled";
-import apiClient from "@/app/api/services";
+import PTOCard from "@/components/PTOCard";
 import SelectionBanner from "@/components/SelectionBanner";
 
-// events array has objects that will be able to be created and deleted
-// upon backend finalization
-
-// for now all of the card PROPS are placeholders until the backend is finalized
 export default function DemoApp() {
   const [events, setEvents] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
-  console.log(events);
+
   const openModal = () => {
-    setModalOpen(true);
+    setModalOpen((value) => !value);
   };
 
-  const closeModal = () => {
-    setModalOpen(false);
-  };
+  // const closeModal = () => {
+  //   setModalOpen(false);
+  // };
 
   useEffect(() => {
     getEvents();
@@ -56,7 +51,7 @@ export default function DemoApp() {
   }
   async function postEvent(leaveType, dateStart, dateEnd, explanation) {
     try {
-      const res = await apiClient.post("/addEvent", {
+      const res = await apiClient.post("/event", {
         type: leaveType,
         start_date: dateStart,
         end_date: dateEnd,
@@ -75,7 +70,7 @@ export default function DemoApp() {
         <h2>Hello</h2>
         <Button onClick={openModal} text={"Request PTO"} />
         {modalOpen && (
-          <ReusableModal onClose={closeModal} onSubmit={postEvent} />
+          <ReusableModal onClose={openModal} onSubmit={postEvent} />
         )}
       </PTOtitleWrapper>
       <PTOCardWrapper>
@@ -85,14 +80,12 @@ export default function DemoApp() {
           text={"(from last year)"}
         />
         <PTOCard title={"UPCOMING PTO"} daysCounter={2} />
+
         <PTOCard title={"PENDING PTO"} daysCounter={3} />
       </PTOCardWrapper>
       <SelectionBanner />
       <CalendarWrapper>
-        <CalendarSelection>
-          <p>Placeholder text</p>
-          <p>Placeholder text</p>
-        </CalendarSelection>
+        <CalendarSelection />
         <FullCalendar
           plugins={[dayGridPlugin]}
           initialView="dayGridMonth"
@@ -110,13 +103,13 @@ export default function DemoApp() {
 function renderEventContent(eventInfo) {
   const opacity = eventInfo.event.extendedProps.status === "Pending" ? 0.6 : 1;
   const backgroundColor =
-    eventInfo.event.extendedProps.status === "Pending"
-      ? "#5C36FF" // Original color for pending status
-      : "blue"; // Original color for other statuses
+    eventInfo.event.extendedProps.status === "Pending" ? "#5C36FF" : "blue";
   return (
     <div style={{ opacity, backgroundColor }}>
       <b>{eventInfo.timeText}</b>
-      <i>{eventInfo.event.title}</i>
+      <p>
+        {eventInfo.event.title} : {eventInfo.event.extendedProps.status}
+      </p>
     </div>
   );
 }

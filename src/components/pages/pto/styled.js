@@ -5,6 +5,9 @@ export const PTOWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 95%;
+  @media (max-width: 950px) {
+    width: 90%;
+  }
 `;
 
 export const PTOtitleWrapper = styled.div`
@@ -26,7 +29,7 @@ export const PTOCardWrapper = styled.div`
   margin-bottom: 20px;
   @media (max-width: 950px) {
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
     width: 100%;
     margin: 0;
   }

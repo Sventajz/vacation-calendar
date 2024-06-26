@@ -1,24 +1,56 @@
 "use client";
+import { useState } from "react";
 
+import apiClient from "@/app/api/services";
+import Button from "../Button";
 import {
   EmployeeCardWrapper,
   EmployeeInfo,
   DateStyles,
   StyledName,
 } from "./styled";
-import Button from "../Button";
-export default function EmployeeCard({ name, lastName, dates }) {
+import ReusableModal from "../Modal";
+export default function EmployeeCard({
+  name,
+  startDate,
+  endDate,
+  id,
+  handleEventUpdate,
+}) {
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen((value) => !value);
+  };
+
+  const approveEvent = async () => {
+    await apiClient.put(`/event/${id}`);
+
+    await handleEventUpdate();
+  };
+  const declineEvent = async () => {
+    await apiClient.delete(`/event/${id}`);
+
+    await handleEventUpdate();
+  };
+
   return (
     <EmployeeCardWrapper>
       <EmployeeInfo>
-        <StyledName>
-          {name} {lastName}
-        </StyledName>
-        <DateStyles>({dates})</DateStyles>
+        <StyledName>{name}</StyledName>
+        <DateStyles>
+          ( {startDate.toDateString()} - {endDate.toDateString()})
+        </DateStyles>
       </EmployeeInfo>
       <EmployeeInfo>
-        <Button text={"Accept"}></Button>
-        <Button text={"Decline"} />
+        <Button text={"Accept"} onClick={approveEvent}></Button>
+        <Button text={"Decline"} onClick={openModal} />
+        {modalOpen && (
+          <ReusableModal
+            onClose={openModal}
+            isDeclineRequest={true}
+            onClick={declineEvent}
+          />
+        )}
       </EmployeeInfo>
     </EmployeeCardWrapper>
   );

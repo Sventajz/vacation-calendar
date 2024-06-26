@@ -6,6 +6,11 @@ export const SelectionBannerWrapper = styled.div`
   border: 1px solid #dadfe4;
   width: 100%;
   height: 40px;
+  margin: auto;
+  @media (max-width: 950px) {
+    margin-top: 10px;
+    font-size: 14px;
+  }
 `;
 
 export const SelectionLinkWrapper = styled.div`

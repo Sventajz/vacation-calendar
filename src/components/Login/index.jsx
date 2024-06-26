@@ -11,7 +11,8 @@ const LoginForm = () => {
         email: username,
         password_hashed: password,
       });
-      console.log(res);
+      console.log("login res ", res.data);
+      localStorage.setItem("admin", res.data);
       window.location.href = "/dashboard/welcome";
     } catch (err) {
       console.log(err);

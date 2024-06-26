@@ -51,6 +51,7 @@ export const FormLogin = styled.form`
   margin-top: 1rem;
   padding: 1.5rem;
   gap: 24px;
+  min-height: 250px;
 `;
 
 export const Credentials = styled.div`
@@ -65,6 +66,7 @@ export const FormFields = styled.div`
 
 export const BtnLogin = styled.button`
   padding: 13px 32px;
+  max-height: 45px;
   border-radius: 16px;
   width: 100%;
   font-size: 15px;
