@@ -15,23 +15,18 @@ export default function EmployeeComponent() {
   const router = useRouter();
   useEffect(() => {
     getEventsForApproval();
-    const checkAuth = () => {
-      const permission = decodedToken();
-      if (permission < 2) router.push("/");
-    };
-    checkAuth();
   }, []);
-
-  const decodedToken = () => {
-    const token = localStorage.getItem("admin");
-    if (token == null) return router.push("/");
-    const payload = JSON.parse(atob(token.split(".")[1]));
-    return payload.permission_id;
-  };
 
   const getEventsForApproval = useCallback(async () => {
     try {
-      const result = await apiClient.get("/getEventApprove");
+      const result = await apiClient.get("/getEventApprove").catch((error) => {
+        if (error.response.status == 403) {
+          console.log("err: ", error.response.status);
+          router.push("/");
+        }
+        if (error.response.status == 401) router.push("/dashboard/welcome");
+      });
+
       const eventsGet = result.data.map((item) => ({
         id: item.id,
         title: item.full_name,

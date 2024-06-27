@@ -24,7 +24,7 @@ async function Logout() {
 }
 
 export default function SideBar({}) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const user = useContext(UserContext);
 
   const toggleIsOpen = () => {

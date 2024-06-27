@@ -14,32 +14,24 @@ export default function RootLayout({ children }) {
   const router = useRouter();
   async function GetUserInfo() {
     try {
-      const user = await apiClient.get("/user");
+      const user = await apiClient.get("/user").catch((error) => {
+        if (error.response.status) {
+          router.push("/");
+        }
+      });
       const userInformation = user.data[0];
       setUserInfo((userInfo) => ({
         ...userInfo,
         ...userInformation,
       }));
     } catch (error) {
-      console.error("Error fetching user info:", error);
+      console.log(error);
     }
   }
 
   useEffect(() => {
     GetUserInfo();
-    const checkAuth = () => {
-      const permission = decodedToken();
-      if (permission == undefined) router.push("/");
-    };
-    checkAuth();
   }, []);
-
-  const decodedToken = () => {
-    const token = localStorage.getItem("admin");
-    if (token == null) return router.push("/");
-    const payload = JSON.parse(atob(token.split(".")[1]));
-    return payload.permission_id;
-  };
 
   const sheet = typeof window === "undefined" ? new ServerStyleSheet() : null;
 
@@ -59,7 +51,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>{sheet ? sheet.getStyleElement() : null}</head>
-      <body>
+      <body suppressHydrationWarning={true}>
         {sheet ? (
           <StyleSheetManager sheet={sheet.instance}>
             {content}
