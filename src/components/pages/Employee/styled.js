@@ -15,6 +15,7 @@ export const EmployeeCardWrapper = styled.div`
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 15px;
   scrollbar-width: thin;
   scroll-behavior: smooth;
