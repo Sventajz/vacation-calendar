@@ -26,10 +26,6 @@ export default function DemoApp() {
     setModalOpen((value) => !value);
   };
 
-  // const closeModal = () => {
-  //   setModalOpen(false);
-  // };
-
   useEffect(() => {
     getEvents();
   }, []);
@@ -49,6 +45,7 @@ export default function DemoApp() {
       console.log(error);
     }
   }
+
   async function postEvent(leaveType, dateStart, dateEnd, explanation) {
     try {
       const res = await apiClient.post("/event", {
