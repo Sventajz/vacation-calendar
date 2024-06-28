@@ -22,3 +22,13 @@ export const SelectionLinkWrapper = styled.div`
   padding-left: 5px;
   gap: 5px;
 `;
+
+export const SelectionLink = styled.div`
+  background-color: red;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;

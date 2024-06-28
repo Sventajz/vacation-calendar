@@ -8,17 +8,25 @@ import { PTOCardWrapper } from "../pto/styled";
 import { PTOtitleWrapper } from "../pto/styled";
 import PTOCard from "@/components/PTOCard";
 import SelectionBanner from "@/components/SelectionBanner";
+import { useRouter } from "next/navigation";
 
 export default function EmployeeComponent() {
   const [requests, setRequests] = useState([]);
-
+  const router = useRouter();
   useEffect(() => {
     getEventsForApproval();
   }, []);
 
   const getEventsForApproval = useCallback(async () => {
     try {
-      const result = await apiClient.get("/getEventApprove");
+      const result = await apiClient.get("/getEventApprove").catch((error) => {
+        if (error.response.status == 403) {
+          console.log("err: ", error.response.status);
+          router.push("/");
+        }
+        if (error.response.status == 401) router.push("/dashboard/welcome");
+      });
+
       const eventsGet = result.data.map((item) => ({
         id: item.id,
         title: item.full_name,

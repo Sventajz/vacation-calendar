@@ -1,7 +1,7 @@
 "use client";
 
 import { ServerStyleSheet, StyleSheetManager } from "styled-components";
-import { useServerInsertedHTML } from "next/navigation";
+import { useServerInsertedHTML, useRouter } from "next/navigation";
 import { MainStyle, DashboardWrapper } from "./styled";
 import { useEffect, useState } from "react";
 
@@ -11,17 +11,21 @@ import UserContext from "@/components/UserContext/UserContex";
 
 export default function RootLayout({ children }) {
   const [userInfo, setUserInfo] = useState({});
-
+  const router = useRouter();
   async function GetUserInfo() {
     try {
-      const user = await apiClient.get("/user");
+      const user = await apiClient.get("/user").catch((error) => {
+        if (error.response.status) {
+          router.push("/");
+        }
+      });
       const userInformation = user.data[0];
       setUserInfo((userInfo) => ({
         ...userInfo,
         ...userInformation,
       }));
     } catch (error) {
-      console.error("Error fetching user info:", error);
+      console.log(error);
     }
   }
 
@@ -47,7 +51,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>{sheet ? sheet.getStyleElement() : null}</head>
-      <body>
+      <body suppressHydrationWarning={true}>
         {sheet ? (
           <StyleSheetManager sheet={sheet.instance}>
             {content}

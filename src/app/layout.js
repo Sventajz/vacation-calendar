@@ -11,10 +11,12 @@ export default function RootLayout({ children }) {
   useServerInsertedHTML(() => {
     return sheet ? sheet.getStyleElement() : null;
   });
-
   return (
     <html lang="en">
-      <head>{sheet ? sheet.getStyleElement() : null}</head>
+      <head>
+        {sheet ? sheet.getStyleElement() : null}
+        <title>PTO managment system</title>
+      </head>
       <body className={inter.className}>
         {sheet ? (
           <StyleSheetManager sheet={sheet.instance}>

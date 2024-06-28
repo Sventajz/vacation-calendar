@@ -13,6 +13,11 @@ export const SideBarComponent = styled.div`
   @media (max-width: 950px) {
     height: 100vh;
   }
+  ${(props) =>
+    !props.$isOpen &&
+    css`
+      justify-content: center;
+    `}
 `;
 
 export const Banner = styled.div`
