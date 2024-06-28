@@ -6,7 +6,7 @@ export const EmployeePage = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
-  width: 90%;
+  width: 100%;
 `;
 
 export const EmployeeCardWrapper = styled.div`

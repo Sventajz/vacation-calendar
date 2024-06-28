@@ -47,20 +47,6 @@ export default function EmployeeComponent() {
 
   return (
     <EmployeePage>
-      <PTOtitleWrapper>
-        <h2>PTO</h2>
-        <Button text={"Request PTO"} />
-      </PTOtitleWrapper>
-      <PTOCardWrapper>
-        <PTOCard
-          title={"PTO DAYS LEFT"}
-          daysCounter={25}
-          text={"(from last year)"}
-        />
-        <PTOCard title={"UPCOMING PTO"} daysCounter={2} />
-        <PTOCard title={"PENDING PTO"} daysCounter={3} />
-      </PTOCardWrapper>
-      <SelectionBanner />
       <EmployeeCardWrapper>
         {requests.map((request) => (
           <EmployeeCard

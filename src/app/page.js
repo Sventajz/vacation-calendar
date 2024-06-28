@@ -8,15 +8,7 @@ import React from "react";
 export default function Home() {
   return (
     <main className={styles.main}>
-      <div className={styles.imageContainer}>
-        {/* <img
-          className={styles.imageHomepage}
-          src="/3634 1.png"
-          alt="Background"
-        /> */}
-        <div className={styles.layer}></div>
-      </div>
-      <Login></Login>
+      <Login />
     </main>
   );
 }

@@ -4,7 +4,7 @@ export const PTOWrapper = styled.div`
   margin: auto;
   display: flex;
   flex-direction: column;
-  width: 95%;
+  width: 100%;
   @media (max-width: 950px) {
     width: 90%;
   }
@@ -44,10 +44,7 @@ export const CalendarWrapper = styled.div`
   margin-top: 10px;
 `;
 export const CalendarSelection = styled.div`
-  position: absolute;
-  top: 10px;
-  left: 5;
   display: flex;
-  gap: 5px;
   font-weight: bold;
+  position: absolute;
 `;
