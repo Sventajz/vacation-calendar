@@ -43,22 +43,7 @@ export default function DemoApp(teamCalendar) {
       const eventsGet = result.data.map((item) => ({
         title: item.full_name,
         start: new Date(item.start_date),
-        end: new Date(item.end_date),
-        status: item.status,
-      }));
-      console.log(eventsGet);
-      setEvents(eventsGet);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  async function getEvent(req, res) {
-    try {
-      const result = await apiClient.get("/event");
-      const eventsGet = result.data.map((item) => ({
-        title: item.full_name,
-        start: new Date(item.start_date),
-        end: new Date(item.end_date),
+        end: new Date(new Date(item.end_date).getTime() + 24 * 60 * 60 * 1000),
         status: item.status,
       }));
       console.log(eventsGet);
