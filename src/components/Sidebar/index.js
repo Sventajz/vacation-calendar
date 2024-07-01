@@ -54,9 +54,12 @@ export default function SideBar({}) {
             {isOpen && <span>Home</span>}
           </SideBarButtons>
         </StyledLink>
-        <StyledLink href="/dashboard/pto">
+        <StyledLink href="/dashboard/ptodash/mycalendar">
           <SideBarButtons
-            $active={pathname === "/dashboard/pto"}
+            $active={
+              pathname === "/dashboard/ptodash/mycalendar" ||
+              pathname === "/dashboard/ptodash/teamcalendar"
+            }
             $isOpen={isOpen}
           >
             <img src="/work.svg" alt="home svg icon" height={20} width={20} />
@@ -64,9 +67,9 @@ export default function SideBar({}) {
           </SideBarButtons>
         </StyledLink>
         {user.permission_id > 1 && (
-          <StyledLink href="/dashboard/employees">
+          <StyledLink href="/dashboard/ptodash/employees">
             <SideBarButtons
-              $active={pathname === "/dashboard/employees"}
+              $active={pathname === "/dashboard/ptodash/employees"}
               $isOpen={isOpen}
             >
               <img src="/user.svg" alt="home svg icon" height={20} width={20} />

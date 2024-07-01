@@ -9,20 +9,20 @@ export default function SelectionBanner({}) {
     <SelectionBannerWrapper>
       <SelectionLinkWrapper>
         <StyledLink
-          href={"/dashboard/pto"}
-          $active={pathname === "/dashboard/pto"}
+          href={"/dashboard/ptodash/mycalendar"}
+          $active={pathname === "/dashboard/ptodash/mycalendar"}
         >
           My Calendar
         </StyledLink>
         <StyledLink
-          href={"/dashboard/pto"}
-          $active={pathname === "/dashboard/pto"}
+          href={"/dashboard/ptodash/teamcalendar"}
+          $active={pathname === "/dashboard/ptodash/teamcalendar"}
         >
           Team Calendar
         </StyledLink>
         <StyledLink
-          href={"/dashboard/employees"}
-          $active={pathname === "/dashboard/employees"}
+          href={"/dashboard/ptodash/employees"}
+          $active={pathname === "/dashboard/ptodash/employees"}
         >
           Employees
         </StyledLink>

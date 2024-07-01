@@ -4,14 +4,12 @@ import apiClient from "@/app/api/services";
 import Button from "@/components/Button";
 import EmployeeCard from "@/components/EmployeeCard";
 import { EmployeePage, EmployeeCardWrapper } from "./styled";
-import { PTOCardWrapper } from "../pto/styled";
-import { PTOtitleWrapper } from "../pto/styled";
-import PTOCard from "@/components/PTOCard";
-import SelectionBanner from "@/components/SelectionBanner";
+import Loading from "@/components/LoadingSpinner";
 import { useRouter } from "next/navigation";
 
 export default function EmployeeComponent() {
   const [requests, setRequests] = useState([]);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   useEffect(() => {
     getEventsForApproval();
@@ -35,6 +33,7 @@ export default function EmployeeComponent() {
         status: item.status,
         counter: item.counter,
       }));
+      setLoading(true);
       setRequests((item) => (item = eventsGet));
     } catch (error) {
       console.log(error);
@@ -47,32 +46,26 @@ export default function EmployeeComponent() {
 
   return (
     <EmployeePage>
-      <PTOtitleWrapper>
-        <h2>PTO</h2>
-        <Button text={"Request PTO"} />
-      </PTOtitleWrapper>
-      <PTOCardWrapper>
-        <PTOCard
-          title={"PTO DAYS LEFT"}
-          daysCounter={25}
-          text={"(from last year)"}
-        />
-        <PTOCard title={"UPCOMING PTO"} daysCounter={2} />
-        <PTOCard title={"PENDING PTO"} daysCounter={3} />
-      </PTOCardWrapper>
-      <SelectionBanner />
       <EmployeeCardWrapper>
-        {requests.map((request) => (
-          <EmployeeCard
-            key={request.id}
-            id={request.id}
-            name={request.title}
-            startDate={request.start}
-            endDate={request.end}
-            counter={request.counter}
-            handleEventUpdate={handleEventUpdate}
-          />
-        ))}
+        {loading ? (
+          requests && requests.length > 0 ? (
+            requests.map((request) => (
+              <EmployeeCard
+                key={request.id}
+                id={request.id}
+                name={request.title}
+                startDate={request.start}
+                endDate={request.end}
+                counter={request.counter}
+                handleEventUpdate={handleEventUpdate}
+              />
+            ))
+          ) : (
+            <h4>Seems like there are no events waiting for approval!</h4>
+          )
+        ) : (
+          <Loading />
+        )}
       </EmployeeCardWrapper>
     </EmployeePage>
   );

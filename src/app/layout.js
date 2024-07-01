@@ -11,6 +11,7 @@ export default function RootLayout({ children }) {
   useServerInsertedHTML(() => {
     return sheet ? sheet.getStyleElement() : null;
   });
+
   return (
     <html lang="en">
       <head>

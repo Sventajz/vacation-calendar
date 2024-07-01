@@ -14,6 +14,7 @@ export const DashboardWrapper = styled.div`
 
 export const MainStyle = styled.main`
   z-index: 0;
+  width: 98%;
   @media (max-width: 950px) {
     width: 100%;
   }

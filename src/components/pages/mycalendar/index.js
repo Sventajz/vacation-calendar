@@ -10,7 +10,7 @@ import Button from "@/components/Button";
 import ReusableModal from "@/components/Modal";
 import { PTOWrapper, CalendarWrapper, CalendarSelection } from "./styled";
 
-export default function DemoApp(teamCalendar) {
+export default function DemoApp() {
   const [events, setEvents] = useState([]);
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -27,19 +27,20 @@ export default function DemoApp(teamCalendar) {
         end_date: dateEnd,
         explanation: explanation,
       });
-      getEvents();
+      getEvent();
       console.log(res);
     } catch (err) {
       console.log(err);
     }
   }
   useEffect(() => {
-    getEvents();
+    console.log("my");
+    getEvent();
   }, []);
 
-  async function getEvents(req, res) {
+  async function getEvent(req, res) {
     try {
-      const result = await apiClient.get("/events");
+      const result = await apiClient.get("/event");
       const eventsGet = result.data.map((item) => ({
         title: item.full_name,
         start: new Date(item.start_date),
